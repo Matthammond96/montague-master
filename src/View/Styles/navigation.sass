@@ -1,0 +1,277 @@
+.page-load
+  padding-top: 104px
+  
+.fixed
+  position: fixed
+  width: 100%
+  top: 0
+  background-color: #ffffff
+  z-index: 10000
+
+.fixed.nobg
+  background-color: rgba(0,0,0,0);
+
+#navigation-contianer
+  margin: 0 auto
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 20px 0
+  width: 100%
+  max-width: 1550px
+  z-index: 1
+
+  .social-icons
+    svg
+      width: 20px
+      height: 20px
+      fill: #ffffff
+
+  .logo
+    img
+      height: 60px
+
+  .burger
+    position: relative
+    z-index: 4000
+
+#nav-icon3
+  width: 20px
+  height: 20px
+  position: relative
+  -webkit-transform: rotate(0deg)
+  -moz-transform: rotate(0deg)
+  -o-transform: rotate(0deg)
+  transform: rotate(0deg)
+  -webkit-transition: .5s ease-in-out
+  -moz-transition: .5s ease-in-out
+  -o-transition: .5s ease-in-out
+  transition: .5s ease-in-out
+  cursor: pointer
+
+#nav-icon3 span
+  display: block
+  position: absolute
+  height: 2px
+  width: 100%
+  background: #fff
+  border-radius: 9px
+  opacity: 1
+  left: 0
+  -webkit-transform: rotate(0deg)
+  -moz-transform: rotate(0deg)
+  -o-transform: rotate(0deg)
+  transform: rotate(0deg)
+  -webkit-transition: .25s ease-in-out
+  -moz-transition: .25s ease-in-out
+  -o-transition: .25s ease-in-out
+  transition: .25s ease-in-out
+
+#nav-icon3 span:nth-child(1)
+  top: 0px
+
+#nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3)
+  top: 8px
+
+#nav-icon3 span:nth-child(4)
+  top: 16px
+
+#nav-icon3.open span:nth-child(1)
+  top: 16px
+  width: 0%
+  left: 50%
+
+#nav-icon3.open span:nth-child(2)
+  -webkit-transform: rotate(45deg)
+  -moz-transform: rotate(45deg)
+  -o-transform: rotate(45deg)
+  transform: rotate(45deg)
+
+#nav-icon3.open span:nth-child(3)
+  -webkit-transform: rotate(-45deg)
+  -moz-transform: rotate(-45deg)
+  -o-transform: rotate(-45deg)
+  transform: rotate(-45deg)
+
+#nav-icon3.open span:nth-child(4)
+  top: 16px
+  width: 0%
+  left: 50%
+
+.navigation-slider 
+  width: 350px
+  height: 100vh
+  position: fixed
+  background-color: #fff
+  top: 0
+  right: -380px
+  z-index: 2000
+  display: block
+  transition: right 0.5s
+
+  .nav-item
+    width: 100%
+    padding: 0 5px;
+
+    a
+      text-decoration: none
+      color: #000
+
+      p
+        font-size: 16px
+        font-weight: 400
+        font-family: "Montserrat",sans-serif
+
+        .nav-item-arrow
+          float: right
+          margin-right: 5px 
+      
+  .navigation-header
+    border-bottom: 1px solid #ccc
+
+    p
+      font-family: "Montserrat",sans-serif
+      font-size: 20px !important
+      font-weight: 500 !important
+      letter-spacing: 2px
+      text-transform: uppercase
+      margin-top: 10px
+
+.black-icon
+  svg
+    fill: #000 !important
+
+.black-burger
+  span
+    background-color: #000 !important
+
+.background-blur
+  background-color: rgba(0,0,0,0.3)
+  width: 100vw
+  height: 100vh
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  display: none
+  z-index: 999
+
+.navigation-slider.open, .background-blur.open
+  display: block
+
+.navigation-slider.open
+  right: 0
+  transition: right 0.6s
+
+.navigation-items
+  padding: 20px
+
+@media (max-width: 600px)
+  #navigation-contianer .logo img
+    height: 40px
+
+// FOOTER
+
+.footer
+  max-width: 1300px;
+  margin: 0 auto;
+
+  .footer-logo
+    text-align: center
+    margin-bottom: 40px
+    margin-top: 50px
+
+    img
+      width: auto
+      height: 50px
+
+  .footer-groups
+    width: 100%
+    text-align: center
+
+    .footer-item
+      display: inline-block
+      vertical-align: top
+      margin: 0 50px
+      text-align: left
+
+      p
+        font-size: 14px
+        font-weight: 500
+
+      a
+        color: #000000
+        text-decoration: none
+
+        p, label
+          font-size: 12px
+          margin: 0
+          margin-top: 10px
+          line-height: 0.8rem
+          font-weight: 300 !important
+          font-family: "Montserrat",sans-serif !important
+  
+  .copyright
+    font-size: 10px
+    text-align: center
+    margin: 30px 0 10px
+
+.newsletter-form
+  width: 270px
+
+  .hide-fields
+    max-height: 0px
+    overflow: hidden
+    transition: all 1s
+    padding-top: 3px
+    width: 100%
+
+  .hide-fields.active
+    max-height: 300px
+    transition: all 1s
+
+  .grid-item-1
+    width: 100%
+    position: relative
+
+    input
+      width: calc(100% - 25px)
+      padding: 7px 10px
+      margin-bottom: 10px 
+
+    input:focus
+      outline: none
+
+    label
+      position: absolute
+      background-color: #fff
+      margin-top: -5px
+      margin-left: 5px
+      padding: 0 5px
+      font-size: 10px
+
+.cookie-banner
+  width: 100%
+  background-color: #eee
+  color: #000
+  padding: 5px
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+
+  .page-container
+    display: flex
+    align-items: center
+    max-width: 1400px
+
+  .cookie-button
+    width: 200px
+    margin-left: 20px
+
+    .btn
+      border: 1px solid #fff
+  p
+    font-size: 10px
+    line-height: 1rem

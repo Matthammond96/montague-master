@@ -1,0 +1,436 @@
+.page
+  width: 95%;
+  margin: 0 auto;
+  max-width: 1600px;
+
+  // BANNER COMPONENT
+
+.banner-component 
+  width: 95%
+  margin: 0 auto
+  max-width: 1600px
+
+  .banner-image
+    width: 100%
+    height: calc(95vh - 150px)
+    max-height: 500px
+    overflow: hidden
+    position: relative
+
+    .content-overlay
+      position: absolute
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      background-color: rgba(0,0,0,0.25)
+
+      .content
+        text-align: center;
+        font-family: "Montserrat",sans-serif;
+        text-transform: uppercase;
+        color: #fff;
+
+        .btn
+          flex: 1 1;
+          letter-spacing: .22rem;
+          font-family: "Montserrat",sans-serif;
+          font-weight: 500;
+          border: 1px solid #fff
+          background-color: rgba(0,0,0,0)
+          color: #fff;
+          cursor: pointer;
+          text-transform: uppercase;
+          text-align: center;
+          max-width: 200px
+          width: 100%;
+          margin-top: 15px
+          padding: 0.6rem 0.8rem;
+
+        h1
+          font-size: 38px;
+          font-weight: 500;
+          margin: 10px 0
+          letter-spacing: 2px;
+
+        h3
+          font-size: 16px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          margin: 0
+
+    img
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+
+  .property-info
+    margin: 60px 0
+
+    .description
+      max-width: 750px
+      margin-left: auto 
+
+  .property-tabs
+    width: 100%
+    background-color: #eee 
+    display: flex
+    justify-content: center
+    padding: 15px 0
+
+    .tab-link
+      flex: 1
+      text-align: center
+      
+      p
+        margin: 0
+      
+  .property-images
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+
+    .image
+      flex-grow: 0
+      flex-shrink: 0
+      flex-basis: calc(33.333% - 10px)
+      position: relative
+      margin: 5px
+
+      img
+        width: 100%
+        height: 100%
+        object-fit: cover
+        
+// Title and Paragraph
+
+.titlePara-component
+  width: 95%
+  max-width: 700px
+  margin: 60px auto
+  text-align: center
+  font-family: "Montserrat",sans-serif;
+  letter-spacing: 1.2px
+
+  h1
+    text-transform: uppercase
+
+// Banner & Text
+@keyframes slideInFromBottom
+  0% 
+    opacity: 0
+    transform: translateY(30%)
+  
+  100% 
+    opacity: 1
+    transform: translateY(0);
+
+@keyframes slideInFromLeft
+  0% 
+    opacity: 0
+    transform: translateX(-20%)
+  
+  100% 
+    opacity: 1
+    transform: translateX(0);
+
+@keyframes slideInFromRight
+  0% 
+    opacity: 0
+    transform: translateX(20%)
+  
+  100% 
+    opacity: 1
+    transform: translateX(0);
+  
+
+.imageText-component.visible
+  .image
+    animation: 1s ease-out 0s 1 slideInFromLeft
+    animation-fill-mode: forwards
+
+  .under-line, .title, .paragraph, .btn
+    animation: 1s ease-out 0.5s 1 slideInFromBottom
+    animation-fill-mode: forwards
+
+.imageText-component.flip.visible  
+  .image
+    animation: 1s ease-out 0s 1 slideInFromRight
+    animation-fill-mode: forwards
+
+.imageText-component
+  display: flex
+  width: 95%
+  margin: 0 auto
+  max-width: 1500px
+  align-items: center
+  margin-top: 60px
+
+  .image
+    flex: 2
+    opacity: 0
+    animation-fill-mode: forwards
+
+    img
+      width: 100%
+      height: auto
+
+  .content
+    flex: 1
+    width: 100%
+    
+    .padding
+      padding: 50px
+      max-width: 550px
+      margin: 0 auto
+
+      .under-line
+        width: 60px
+        height: 2px
+        background-color: #e09e5a
+        margin-bottom: 20px
+        transition: width .5s
+        opacity: 0
+        animation-fill-mode: forwards
+
+      .title:hover + .under-line
+        width: 80px
+
+      .title, .paragraph, .btn
+        margin-bottom: 30px
+        opacity: 0
+        animation-fill-mode: forwards
+
+      .title
+        font-size: 1.4rem
+        margin-bottom: 10px
+
+      .btn
+        font-size: 0.6rem
+
+.imageText-component.flip
+  flex-direction: row-reverse
+
+// Featured Properties
+.featured-properties
+  margin-top: 60px
+  text-align: center
+
+  .title
+    margin-bottom: 40px
+
+  .properties
+    display: flex
+    justify-content: space-between;
+    width: 100%
+    margin-bottom: 30px;
+
+    .item
+      flex: 0 0 calc(33% - 30px);
+      padding-right: 27px
+      border-right: 1px solid #dddddd;
+      opacity: 0
+
+      img
+        width: 100%
+        height: 400px
+        object-fit: cover
+        margin-bottom: 20px
+
+    .item.visible
+      animation: slideInFromBottom 1s ease-out
+      animation-fill-mode: forwards
+
+    .item.visible:nth-child(1)
+      animation-delay: 0s
+    
+    .item.visible:nth-child(2)
+      animation-delay: 0.3s
+
+    .item.visible:nth-child(3)
+      animation-delay: 0.6s
+
+    .item:last-child
+      border-right-width: 0px
+      padding-right: 0
+
+    h3
+      font-size: 0.8rem
+      margin-bottom: 0
+
+    h2
+      font-size: 1.2rem
+      margin-top: 0
+
+    p 
+      font-size: 0.8rem
+      padding: 0 40px
+  
+  .discover-more
+    margin-top: 50px
+
+// Carousel
+.carousel-component
+  text-align: center
+
+  h2
+    font-weight: 300
+    margin-bottom: 40px
+    text-decoration: none
+
+    span
+      background-image: linear-gradient(to right, #1c1c1c, #1c1c1c)
+      background-position: bottom center
+      background-repeat: no-repeat
+      background-size: 80% 1px
+      padding-bottom: 5px
+      transition: background-size .5s ease
+
+    span:hover
+      background-size: 115% 1px
+
+  .box 
+    display: flex
+    width: 100%
+    align-items: center
+    margin-bottom: 100px
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+    .image-left, .image-right
+      height: 450px
+      flex: 1
+
+    .image-middle
+      height: 550px
+      margin: 0 30px
+      flex-grow: 0;     /* do not grow   - initial value: 0 */
+      flex-shrink: 0;   /* do not shrink - initial value: 1 */
+      flex-basis: 1070px /* width/height  - initial value: auto */
+
+// Contact Form
+.contact-form-contact
+  background-color: #f3f3f3
+  margin-bottom: 60px
+
+  h2
+    text-align: center
+    font-weight: 300
+    margin-bottom: 30px
+    text-decoration: none
+    padding-top: 30px
+
+    span
+      background-image: linear-gradient(to right, #1c1c1c, #1c1c1c)
+      background-position: bottom center
+      background-repeat: no-repeat
+      background-size: 80% 1px
+      padding-bottom: 5px
+      transition: background-size .5s ease
+    
+    span:hover
+      background-size: 115% 1px
+
+  .contact-form-cotainer
+    display: flex
+    width: 94%;
+    padding: 3%
+    
+
+    .form
+      flex: 1
+
+    .contact-info
+      margin-right: 50px
+
+    .grid-item-1
+      flex: 1
+      margin: 0 10px
+
+    .container
+      display: flex
+
+      .flex
+        flex: 1
+
+    input, textarea
+      width: calc(100% - 25px)
+      padding: 7px 10px
+      margin-bottom: 20px
+      background-color: #f3f3f3
+      border-width: 1px
+      border-color: #555
+    input:focus
+      outline: none
+    label
+      position: absolute
+      background-color: #f3f3f3
+      margin-top: -5px
+      margin-left: 5px
+      padding: 0 5px
+      font-size: 10px
+
+    .textarea
+      height: 100%
+
+      textarea
+        height: calc(100% - 36px)
+
+  .button-form
+    text-align: right
+
+// Product Gallery
+.product-gallery-component
+  display: flex
+  align-items: center
+  margin-bottom: 100px
+  flex-wrap: wrap
+
+  .image-container
+    height: 600px
+    margin: 15px
+    flex-basis: calc(50% - 30px)
+    overflow: hidden
+
+    img
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      object-fit: cover
+      position: relative
+      transition: all 1s
+      opacity: 1
+
+    img:hover
+      width: 110%
+      height: 110%
+      left: -5%
+      top: -5%
+
+  .image-container:nth-child(1) 
+    flex-basis: calc(50% - 30px)
+    height: 500px
+
+  .image-container:nth-child(2)
+    flex-basis: calc(20% - 30px)
+
+  .image-container:nth-child(3)
+    flex-basis: calc(30% - 30px)
+    height: 500px
+
+//Video Component
+.video-component
+  width: 100%
+  height: 600px
+  margin-bottom: 100px
+  position: relative
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover

@@ -1,0 +1,253 @@
+h1, h2, h3, h4, h5, h6, p, span
+  font-family: "Montserrat",sans-serif
+
+.properties-heading
+  width: 100%
+  height: 650px
+  background-image: url("http://staging.montaguerealestate.com/storage/properties/101/photos/5f07762ab8f40.jpg")
+  background-size: cover
+  background-position: center
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-top: -104px
+  margin-bottom: 40px
+  .vc
+    width: 100%
+
+  h1
+    text-align: center
+    font-family: "Montserrat",sans-serif
+    font-size: 28px
+    font-weight: 500
+    height: 55px
+    letter-spacing: 2px
+    line-height: 55px
+    text-transform: uppercase
+    color: #fff
+
+  .listing-form-container
+    background-color: #fff
+    width: 100%
+    max-width: 950px
+    margin: 0 auto
+    padding: 5px
+  .listing-form
+    display: flex
+    font-size: 12px
+    font-family: "Montserrat",sans-serif
+
+    .btn
+      flex: 1
+      letter-spacing: .22rem
+      font-family: "Montserrat",sans-serif
+      font-weight: 500
+      background-color: #000
+      color: #fff
+      cursor: pointer
+      text-transform: uppercase
+      text-align: center
+      width: 90%
+      transition: all 0.46s
+      padding: 0 1rem
+      left: 5%
+      z-index: 10
+      border: none
+      margin-right: 3px
+
+    .destinations, .property
+      flex: 2
+
+    .bedrooms, .price
+      flex: 1
+
+    .css-yk16xz-control
+      border-color: rgba(0,0,0,0)
+
+      svg.css-19bqh2r
+        width: 13px
+        height: 13px
+
+      .css-1okebmr-indicatorSeparator
+        display: none
+
+      .css-tlfecz-indicatorContainer
+        border-right: 1px solid #ddd
+
+    .price
+      .css-tlfecz-indicatorContainer
+        border-right: 1px solid rgba(0,0,0,0)
+
+.properties-list
+  width: 100%
+  max-width: 1350px
+  margin: 0 auto
+  display: flex
+  flex-wrap: wrap
+  margin-top: -20px
+
+  .listing-card
+    flex: 1 1 50%
+
+    .content
+      padding: 30px
+
+    .image
+      width: 100%
+      height: 400px
+      background-size: cover
+      background-position: center
+      position: relative
+      overflow: hidden
+
+      img
+        object-fit: cover
+        width: 100%
+        height: 100%
+        position: absolute
+        top: 0
+        left: 0
+        transition: all 1s
+        z-index: 0
+      
+      img:hover
+        width: 110%
+        height: 110%
+        left: -5%
+        top: -5%
+
+    .details
+      padding: 10px
+      background-color: #f3f3f3
+      // border-left: 1px solid #ccc
+      // border-right: 1px solid #ccc
+      // border-bottom: 1px solid #ccc
+
+    .subtitle
+      font-size: 12px
+      letter-spacing: 0.8px
+      font-weight: 400
+      margin-top: 0
+
+    .title
+      font-size: 14px
+      letter-spacing: 0.8px
+      
+    .price, .misc
+      font-size: 11px
+      letter-spacing: 0.8px
+      margin-bottom: 0
+
+      svg
+        width: 20px
+
+    // .misc
+    //   padding-top: 10px
+    //   border-top: 1px solid #ccc
+
+    .info
+      float: right
+  
+  .listing-card:nth-child(3)
+    flex: 1 1 100%
+
+.properties-list.large
+  .listing-card
+    flex: 1 1 100%
+
+
+@media (max-width: 950px)
+  .listing-card
+    flex: 1 1 50% !important
+
+@media (max-width: 600px)
+  .listing-card
+    flex: 1 1 100% !important
+
+  .properties-heading
+    height: 500px
+
+  .listing-form-container
+    display: none
+
+.grids
+  display: flex
+  width: 45px
+  margin-left: auto
+  margin-right: 32px
+
+.grid-large
+  display: flex
+  flex-wrap: wrap
+  height: 15px
+  flex: 1
+
+  span
+    height: 8px
+    margin: 1px
+    background-color: #ccc
+    flex: 1 0 29%; /* explanation below */
+
+.grid-small
+  display: flex
+  flex-wrap: wrap
+  flex: 1
+  margin-left: 5px
+
+  span
+    height: 18px
+    margin: 1px 2px
+    background-color: #ccc
+    flex: 1
+    margin-left: 2px
+
+.results
+  margin-left: 32px
+
+  p
+    font-size: 12px
+
+.view-config
+  align-items: center
+  width: 100%;
+  max-width: 1345px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+
+.thumbnails
+  width: 100%
+  height: 20px
+  z-index: 1
+  position: absolute
+  display: flex
+  justify-content: center
+  bottom: 0
+  padding-top: 20%
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+
+  .thumb
+    width: 40px
+    height: 2px
+    background-color: #eee
+    border-radius: 5px
+    margin: 0 5px
+
+    .fill
+      width: 0%
+      height: 2px
+      background-color: #e09e5a
+      border-radius: 5px
+      transition: width 1s
+
+  .thumb.active
+    .fill
+      width: 100%
+
+.image-container
+  img
+    opacity: 0
+
+  .active
+    opacity: 1
