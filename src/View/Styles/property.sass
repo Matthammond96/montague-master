@@ -302,4 +302,32 @@
 
   table
     width: 100%
+    border-collapse: collapse
     text-align: left
+
+    th, tr
+      font-weight: 300
+    
+    th, td
+      padding: 0.5rem
+    
+    tr:nth-child(1)
+      border-bottom: 2px solid #aaa
+
+    tr
+      border-bottom: 1px solid #aaa
+
+    th
+      font-size: 0.9rem
+
+    td
+      font-size: 0.8rem
+
+    a
+      text-decoration: none
+      .line
+        padding-bottom: 2px
+        background-size: 80% 1px
+
+        &:hover
+          background-size: 100% 1px

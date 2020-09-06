@@ -41,7 +41,7 @@ class SubProperties extends Component {
                   <th>Bathroom</th>
                   <th>Sqft</th>
                   <th>Listing Price</th>
-                  <th>View Property</th>
+                  <th></th>
                 </tr>
                 {subProperties.map(property => {
                   const {name, bedrooms, bathroom, propertySizeSqm, price} = property.fields;
