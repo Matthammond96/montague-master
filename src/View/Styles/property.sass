@@ -15,15 +15,22 @@
       width: 100%
       height: 100%
       display: flex
-      justify-content: center
       align-items: center
       background-color: rgba(0,0,0,0.25)
+      z-index: 1
+
+      .arrow-container
+        width: 60px
+        height: 80px
+        background-color: #333
+        flex: 0 0 60px
 
       .content
         text-align: center;
         font-family: "Montserrat",sans-serif;
         text-transform: uppercase;
         color: #fff;
+        flex: auto
 
         .btn
           flex: 1 1;
@@ -59,7 +66,7 @@
       object-fit: cover
 
   .property-info
-    margin: 60px 0
+    margin: 0 0 60px 0
 
     .description
       max-width: 750px
@@ -78,7 +85,7 @@
     background-color: #ddd
     position: sticky
     top: 102px
-    z-index: 1
+    z-index: 4
 
     .tabs-container
       display: flex
@@ -173,3 +180,109 @@
   background-color: #f3f3f3
   top: 104px
   position: fixed
+
+.carousel
+  height: calc(95vh - 150px)
+  overflow: hidden
+  position: relative
+  max-height: 900px
+
+  ul
+    height: calc(95vh - 150px)
+    max-height: 900px
+
+  .slider-image
+    padding-bottom: 0 !important
+    height: calc(95vh - 150px);
+    max-height: 900px;
+    
+    img
+      width: 100%
+      object-fit: cover
+      height: calc(95vh - 150px);
+      overflow: hidden;
+      position: relative;
+      max-height: 900px;
+  
+  .arrow-container
+    border: none
+    z-index: 2;
+    width: 60px;
+    height: 90px;
+    background-color: #333;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute
+
+  .arrow-container.prev
+    left: 0
+
+  .arrow-container.next
+    right: 0
+
+@keyframes contextBottom
+  0% 
+    transform: translateY(60%)
+  
+  100% 
+    transform: translateY(0);
+
+.context
+  background-color: rgba(0,0,0,0) !important
+  background: rgb(0,0,0);
+  background: -moz-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.6) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.6) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.6) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+
+.slider-image[aria-selected="true"]
+  .context
+    .content
+      animation: 0.6s ease-out 0.2s 1 contextBottom
+
+.context
+  align-items: flex-end !important
+  
+  .content
+    padding-bottom: 40px
+
+.icon-arrow
+  height: 35px
+
+.toggle-content
+  padding: 30px
+
+.highlight-container
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+
+  .product-highlight
+    flex: 0 0 calc(50% - 60px)
+    border-top: 1px solid #ccc
+
+    &:last-child,
+    &:nth-last-child(2)
+      border-bottom: 1px solid #ccc
+    
+    span
+      float: right
+
+  .product-highlight:nth-child(odd)
+    margin-right: 60px
+
+.property-image-fixed
+  position: fixed
+  height: calc(95vh - 150px)
+  overflow: hidden
+  max-height: 900px
+  width: 95%
+  margin: 0 auto
+  max-width: 2000px
+
+.property-container
+    background-color: #fff;
+    z-index: 2;
+    position: relative;
+    padding-top: 60px
+    padding-bottom: 60px

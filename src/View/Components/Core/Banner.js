@@ -22,7 +22,7 @@ class Banner extends Component {
       <div className="banner-image">
         <div className="content-overlay">
           <div className="content">
-            <h3>{subTitle}</h3>
+            <h3 className="orchide">{subTitle}</h3>
             <h1>{title}</h1>
             {buttonLink ? (
               <button class="btn">{buttonTitle}</button>

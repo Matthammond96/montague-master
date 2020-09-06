@@ -24,7 +24,6 @@ class ImageText extends Component {
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.intersectionRatio === 1) {
-        console.log("a");
         this.setState({
           visible: true
         });
@@ -45,12 +44,20 @@ class ImageText extends Component {
         </div>
         <div className="content">
           <div className="padding">
-            <h2 className="title">{title}</h2>
-            <div className="under-line"></div>
-            <p className="paragraph">{paragraph}</p>
+            {title && (
+              <h2 className="title">{title}</h2>  
+            )}
+            {title && (
+              <div className="under-line"></div>
+            )}
+            {paragraph && (
+              <p className="paragraph">{paragraph}</p>
+            )}
+            {buttonTitle && (
             <Link to={buttonUrl} className="btn">
               {buttonTitle}
             </Link>
+            )}
           </div>
         </div>
       </div>

@@ -9,9 +9,12 @@
     "@testing-library/user-event": "^7.2.1",
     "contentful": "^7.14.6",
     "emailjs-com": "^2.6.3",
+    "google-maps-react": "^2.0.6",
     "node-sass": "^4.14.1",
+    "pure-react-carousel": "^1.27.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-player": "^2.6.1",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.0.0",
     "react-scripts": "3.4.2"

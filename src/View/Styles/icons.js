@@ -12,5 +12,18 @@ fill="#1c1c1c" stroke="none"><path d="M340 280 c-12 -12 -18 -26 -14 -32 5 -7 10 
 -62 -3z"/><path d="M26 141 c-9 -15 9 -54 39 -81 25 -23 35 -25 145 -28 133 -4 168 7
 195 58 32 61 34 60 -179 60 -107 0 -197 -4 -200 -9z"/><path d="M67 24 c-8 -8 1 -24 14 -24 5 0 9 7 9 15 0 15 -12 20 -23 9z"/><path d="M356 21 c-4 -5 -2 -12 3 -15 5 -4 12 -2 15 3 4 5 2 12 -3 15 -5 4
 -12 2 -15 -3z"/></g></svg>
+)
 
+export const ArrowLeft = () => (
+  <svg version="1.1" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 180.18">
+    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M4.28,90.59 C37,123.4,57.36,143.34,90,176.18"></path>
+    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M4,90.29 C36.73,57.59,57.23,36.71,90,4"></path>
+  </svg>
+)
+
+export const ArrowRight = () => (
+  <svg version="1.1" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 180.18">
+    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M89.72,90.61 C57.04,123.41,36.64,143.35,4,176.19"></path>
+    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M90,90.3 C57.27,57.55,36.77,36.72,4,4"></path>
+  </svg>
 )

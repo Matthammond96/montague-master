@@ -57,9 +57,9 @@ class Footer extends Component {
   render() {
     return (    
       <div className="footer">
-        <div className="footer-logo">
-          {/* <img alt="montage properties" src="/logo.png"></img> */}
-        </div>
+        {/* <div className="footer-logo">
+          <img alt="montage properties" src="/logo.png"></img>
+        </div> */}
         <div className="footer-groups">
           {this.footer.map(group => {
             return (

@@ -1,6 +1,11 @@
+@font-face {
+  font-family: Orchide;
+  src: url("Orchide.otf");
+}
+
 body {
   margin: 0;
-  font-family: font-family: "Montserrat",sans-serif
+  font-family: "Montserrat",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000;
@@ -40,6 +45,7 @@ a {
   letter-spacing: .22rem;
   font-family: "Montserrat",sans-serif;
   font-weight: 500;
+  font-size: 0.6rem;
   background-color: #333;
   color: #fff;
   cursor: pointer;
@@ -50,7 +56,14 @@ a {
   padding: 0.7rem 2rem;
   border: none;
   border-radius: 3px;
-  }
+  border: 1px solid #333;
+}
+
+.btn:hover {
+  background-color: rgba(0,0,0,0);
+  color: #333;
+  border: 1px solid #e09e5a
+}
 
 label {
   font-size: 12px;
@@ -110,3 +123,13 @@ label {
 		scroll-behavior: auto;
 	}
 }
+
+.component-loader {
+  padding-bottom: 30px;
+}
+/* 
+.orchide {
+  font-family: "Orchide";
+  font-size: 3rem !important;
+  text-transform: capitalize;
+} */

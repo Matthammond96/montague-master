@@ -73,7 +73,7 @@ class FeaturedProperties extends Component {
           })}          
         </div>
 
-        <Link to={buttonUrl}><p className="discover-more section-title"><span className="line">{buttonTitle}</span></p></Link>
+        <Link className="btn" to={buttonUrl}>{buttonTitle}</Link>
       </div>
     )
   }

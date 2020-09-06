@@ -174,7 +174,7 @@ class Listings extends Component {
                           ))}
                       </div>
                       <div className="image-container">
-                      {photos.slice(0).reverse().map((photo, key) => {
+                      {photos.map((photo, key) => {
                         return (
                           <img className={key === 0 && "active"} src={photo.fields.file.url}></img>
                         )
@@ -188,10 +188,8 @@ class Listings extends Component {
                     <Link className="" to={propertyLink}>
                       <h3 className="subtitle">{location}</h3>
                       <h2 className="title">{name}</h2>
-                      <p className="price">Price: £{price}</p>
-                      <p className="price">SQM: {propertySizeSqm}</p>
-                      <p className="misc">{type}</p>
-                      <p className="misc"><BedIcon></BedIcon>: {bedrooms}, <BathIcon></BathIcon>: {bathroom}</p>
+                      <p className="price">{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} sqm</p>
+                      <p className="price">£{price}</p>
                       </Link>
                     </div>
                   </div>
