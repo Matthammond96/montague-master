@@ -8,22 +8,24 @@ class Teams extends Component {
 
     this.state = {
       component: props.component,
-      team: []
+      teams: []
     };
   }
 
   async fetchTeamMembers() {
-    let team = [];
 
-    const promise = await this.state.component.teamMembers.map(member => {
-      client
-      .getEntry(member.sys.id)
-      .then(entry => team.push(entry))
-      .catch(err => console.log(err));
-    })
+    let id = "";
     
+    const promise = await this.state.component.teamMembers.map((member, key) => {
+      if (key === 0) return id = id + member.sys.id
+      id = id + `,${member.sys.id}`
+    });
     await Promise.all(promise);
-    this.setState({team: team})
+  
+    client
+      .getEntries({"content_type": "teamMember", "sys.id[in]": id})
+      .then(entry => this.setState({teams: entry, loaded: true}))
+      .catch(err => console.log(err));
   }
 
   async componentDidUpdate() {
@@ -38,22 +40,26 @@ class Teams extends Component {
   } 
 
   render() {
+    console.log(this.state.teams)
     return (
       <section>
         <h2 className="section-title"><span className="line">{this.state.component.title}</span></h2>
-        <div className="properties">
-          {this.state.team.map(member => {
-            const {name, jobTitle, email, photo} = member.fields;
-            return (
-              <div className="item visible">
-                {/* <img src={photo[0].fields.file.url}></img> */}
-                <h2>{name}</h2>
-                <h3>{jobTitle}</h3>
-                <p>{email}</p>
-              </div>
-            )
-          })}          
-        </div>
+        {this.state.loaded && (
+          <div className="properties">
+            {this.state.teams.items.map(team => {
+              console.log(this.state.teams)
+              return (
+                <div className="item visible">
+                  <img src={team.fields.photo.fields.file.url}></img>
+                  <h2>{team.fields.name}</h2>
+                  <h3>{team.fields.jobTitle}</h3>
+                  <p>{team.fields.email}</p>
+                </div>
+              )
+            })}          
+          </div>
+        )}
+        
       </section>
     )
   }

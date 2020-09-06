@@ -27,7 +27,7 @@ class PropertyToggle extends Component {
   render() {
     const {tite, components} = this.state.component.fields;
     return (
-      <section className="page-container property-tabbed-content">
+      <section id={tite.replace(" ", "-")} className="page-container property-tabbed-content">
         <div className="property-toggle-container">
         <h2 className="section-title"><span className="line">{tite}</span></h2>
           <div className="toggle-headings">

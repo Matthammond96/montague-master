@@ -3,6 +3,7 @@ import { client } from '../../../ContentfulContext';
 import Carousel from '../Core/Carousel';
 import ContactForm from './ContactForm';
 import PropertyToggle from './PropertyToggle';
+import SubProperties from './SubProperties';
 import ProductGallery from '../Core/ProductGallery';
 import VideoComponent from '../Core/VideoComponent';
 import {ArrowLeft, ArrowRight} from '../../Styles/icons';
@@ -21,48 +22,59 @@ class Property extends Component {
       id: window.location.pathname.replace("/property/", ""),
       property: {},
       components: [],
-      loaded: false,
-      isTop: false,
-      heading: [{
-        name: "Property Highlights",
-        link: "#property-highlights"
-      },{
-        name: "Link 2",
-        link: "#linkn"
-      }]
+      loaded: false
     };
   }
 
   async getComponents() {
-    let components = []
-    
     if (this.state.property.components) {
-      const promie = this.state.property.components.map(async component => {
-        await client.getEntry(component.sys.id)
-        .then(entry => components.push(entry))
-        .catch(err => console.log(err));
+      let id = "";
+    
+      const promise = await this.state.property.components.map((component, key) => {
+        if (key === 0) return id = id + component.sys.id
+        id = id + `,${component.sys.id}`
+      });
+      await Promise.all(promise);
+
+      client.getEntries({"sys.id[in]": id})
+      .then(entry => {
+        this.setState({components: entry, loaded: true});
       })
-  
-      await Promise.all(promie);
-      await this.setState({components: components, loaded: true})
+      .catch(err => console.log(err));
+      
     } else {
       this.setState({loaded: true})
     }
    
   }
 
-  componentDidMount() {
+  getProperty() {
+    console.log("fetcg");
     client
     .getEntry(this.state.id)
-    .then(entry => {
-      this.setState({property: entry.fields})
+    .then(async entry => {
+      await this.setState({property: entry.fields})
       this.getComponents();
     })
     .catch(err => console.log(err));
   }
 
-  
-  
+  async componentDidUpdate() {
+    const id = window.location.pathname.replace("/property/", "");
+    if (this.state.id != id) {
+      await this.setState({
+        id: id,
+        loaded: false,
+        property: {},
+        components: [],
+      });
+      this.getProperty();
+    }
+  }
+
+  componentDidMount() {
+    this.getProperty();
+  }
 
   render() {
     
@@ -123,49 +135,72 @@ class Property extends Component {
             )}              
             </div>
             <div className="property-tabs">
-              <div id="tabbed-scrolled" className={`tabs-container ${this.state.isTop && 'fix-me'}`}>
-                {this.state.heading.map(header => {
-                  const scrollWithOffset = (el) => {
-                    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-                    const yOffset = -180; 
-                    window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
-                  }
+              {this.state.property.components ? (
+                <div id="tabbed-scrolled" className={`tabs-container ${this.state.isTop && 'fix-me'}`}>
+                  {this.state.property.components.map(component => {
+                    let linkTo = "";
+                    let title = "";
 
-                  return (
-                    <div className="tab-link active">
-                      <HashLink to={header.link} scroll={el => scrollWithOffset(el)}><p>{header.name}</p></HashLink>
-                    </div>
-                  )
-                })}
-                <a href="/contact-us" className="btn">Schedule Viewing</a>
-              </div>
-              
+                    if (component.fields.title) {
+                      linkTo = "#" + component.fields.title.replace(" ", "-");
+                      title = component.fields.title;
+                    }
+
+                    if (component.fields.tite) {
+                      linkTo = "#" + component.fields.tite.replace(" ", "-");
+                      title = component.fields.tite;
+                    }
+
+                    const scrollWithOffset = (el) => {
+                      const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+                      const yOffset = -180; 
+                      window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
+                    }
+
+                    return (
+                      <div className="tab-link active">
+                        <HashLink to={linkTo} scroll={el => scrollWithOffset(el)}><p>{title}</p></HashLink>
+                      </div>
+                    )
+                  })}
+                
+                  <a href="/contact-us" className="btn property-btn">Schedule Viewing</a>
+                </div>
+              ) : (
+                <div id="tabbed-scrolled" className={`tabs-container ${this.state.isTop && 'fix-me'}`}>
+                  <a href="/contact-us" className="btn property-btn">Schedule Viewing</a>
+                </div>
+              )}
             </div>
 
-<div className="property-container">
+          <div className="property-container">
 
             <div className="page-container">
               <div className="property-info grid">
                 <div className="grid-item description">
                   <h2>{this.state.property.name}</h2>
-                  <h4>6 Beds | 6 Baths | 3 Receptions | £32,500,000</h4>
+                  <p className="price">{this.state.property.bedrooms} Beds |  {this.state.property.bathroom} Baths | {this.state.property.propertySizeSqm} Sqft</p>
                   <p>{this.state.property.description}</p>
                 </div>  
               </div>
             </div>
             
-
-            
-            {this.state.components.map(component => {
-              const contentType = component.sys.contentType.sys.id
-              return (
-                <div>
-                  {contentType === "tabbedContent" && <PropertyToggle component={component}></PropertyToggle>}
-                  {contentType === "imageGallery" && <ProductGallery component={component}></ProductGallery>}
-                  {contentType === "videoBanner" && <VideoComponent component={component.fields}></VideoComponent>}
-                </div>
-              )
-            })}
+            {this.state.property.components && (
+              <div>
+                {this.state.property.components.map(component => {
+                  const contentType = component.sys.contentType.sys.id;
+                  let obj = this.state.components.items.find(o => o.sys.contentType.sys.id === contentType);
+                  return (
+                    <div className="">
+                      {contentType === "tabbedContent" && <PropertyToggle component={obj}></PropertyToggle>}
+                      {contentType === "imageGallery" && <ProductGallery component={obj}></ProductGallery>}
+                      {contentType === "videoBanner" && <VideoComponent component={obj.fields}></VideoComponent>}
+                      {contentType === "subProperties" && <SubProperties component={obj.fields}></SubProperties>}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
              
             </div></div>
         ) : null}

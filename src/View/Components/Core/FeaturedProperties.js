@@ -18,7 +18,7 @@ class FeaturedProperties extends Component {
 
   fetchProperties = async () => {
     client
-      .getEntries({"content_type": "properties", "sys.id[in]": "4yra9MUSB2xKx423wpPxTZ,7BD5iHENDYc82e3gqfVwon,7KJfvzvdYhFJuXXhG4iedX", "select": ["fields.name", "fields.location", "fields.description", "fields.photos"]})
+      .getEntries({"content_type": "properties", "sys.id[in]": "4yra9MUSB2xKx423wpPxTZ,7BD5iHENDYc82e3gqfVwon,7KJfvzvdYhFJuXXhG4iedX", "select": ["fields.name", "fields.location", "fields.description", "fields.photos", "fields.bedrooms", "fields.bathroom", "fields.propertySizeSqm"]})
       .then(async entry => this.setState({fetched_properties: entry.items}))
       .catch(err => console.log(err));
   }
@@ -51,13 +51,15 @@ class FeaturedProperties extends Component {
  
   render() {
     const {title, buttonTitle, buttonUrl} = this.state.component;
+
+    console.log(this.state.fetched_properties);
     return (
       <div className="featured-properties page" ref={this.ref}>
         <h2 className="title">{title}</h2>
 
         <div className="properties">
           {this.state.fetched_properties.map(property => {
-            const {name, location, description, photos} = property.fields;
+            const {name, location, description, photos, bedrooms, bathroom, propertySizeSqm} = property.fields;
             const {id} = property.sys;
 
            return (
@@ -65,7 +67,7 @@ class FeaturedProperties extends Component {
                   <Link to={`/property/${id}`}>
                   <img src={photos[0].fields.file.url}></img>
                   <h2>{name}</h2>
-                  <h3>6 Beds | 6 Baths | 3 Receptions | £32,500,000</h3>
+                  <h3>{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</h3>
                   <p>A minimalist masterpiece - this townhouse in the West Village is truly something very special.</p>
                   </Link>
               </div>

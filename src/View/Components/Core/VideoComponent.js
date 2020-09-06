@@ -27,7 +27,7 @@ class VideoComponent extends Component {
     const {title, paragraph, wide, videoThumbnail, videoFile} = this.state.component;
 
     return (
-      <section className={wide ? "video-comtainer" : "page-container"}>
+      <section id={title && title.replace(" ", "-")} className={wide ? "video-comtainer" : "page-container video-container"}>
         <h2 className="section-title"><span className="line">{title}</span></h2>
         <p>{paragraph}</p>
         <div className="video-component">

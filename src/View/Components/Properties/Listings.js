@@ -188,7 +188,7 @@ class Listings extends Component {
                     <Link className="" to={propertyLink}>
                       <h3 className="subtitle">{location}</h3>
                       <h2 className="title">{name}</h2>
-                      <p className="price">{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} sqm</p>
+                      <p className="price">{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</p>
                       <p className="price">£{price}</p>
                       </Link>
                     </div>

@@ -19,7 +19,7 @@ class ProductGallery extends Component {
   render() {
     const {title, paragraph, images} = this.state.component.fields;
     return (
-      <section>
+      <section id={title.replace(" ", "-")} >
         <div className="page-container">
           <h2 className="section-title"><span className="line">{title}</span></h2>
           <p>{paragraph}</p>
