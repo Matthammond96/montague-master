@@ -13,7 +13,6 @@ class Teams extends Component {
   }
 
   async fetchTeamMembers() {
-
     let id = "";
     
     const promise = await this.state.component.teamMembers.map((member, key) => {
@@ -43,7 +42,7 @@ class Teams extends Component {
     console.log(this.state.teams)
     return (
       <section>
-        <h2 className="section-title"><span className="line">{this.state.component.title}</span></h2>
+        <h2 className="section-title orchide"><span className="line">{this.state.component.title}</span></h2>
         {this.state.loaded && (
           <div className="properties">
             {this.state.teams.items.map(team => {

@@ -14,16 +14,28 @@ fill="#1c1c1c" stroke="none"><path d="M340 280 c-12 -12 -18 -26 -14 -32 5 -7 10 
 -12 2 -15 -3z"/></g></svg>
 )
 
-export const ArrowLeft = () => (
-  <svg version="1.1" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 180.18">
-    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M4.28,90.59 C37,123.4,57.36,143.34,90,176.18"></path>
-    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M4,90.29 C36.73,57.59,57.23,36.71,90,4"></path>
-  </svg>
-)
+export const ArrowLeft = (props) => {
+  let colour = "#ffffff";
+  let weight = 6;
+  if (props.colour) { colour = props.colour };
+  if (props.weight) { weight = props.weight };
+  return (
+    <svg version="1.1" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 180.18">
+      <path fill="none" stroke={colour} stroke-width={weight} stroke-linecap="round" stroke-linejoin="round" d="M4.28,90.59 C37,123.4,57.36,143.34,90,176.18"></path>
+      <path fill="none" stroke={colour} stroke-width={weight} stroke-linecap="round" stroke-linejoin="round" d="M4,90.29 C36.73,57.59,57.23,36.71,90,4"></path>
+    </svg>
+  )
+}
 
-export const ArrowRight = () => (
-  <svg version="1.1" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 180.18">
-    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M89.72,90.61 C57.04,123.41,36.64,143.35,4,176.19"></path>
-    <path fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M90,90.3 C57.27,57.55,36.77,36.72,4,4"></path>
-  </svg>
-)
+export const ArrowRight = (props) => {
+  let colour = "#ffffff";
+  let weight = 6;
+  if (props.colour) { colour = props.colour };
+  if (props.weight) { weight = props.weight };
+  return (
+    <svg version="1.1" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 180.18">
+      <path fill="none" stroke={colour} stroke-width={weight} stroke-linecap="round" stroke-linejoin="round" d="M89.72,90.61 C57.04,123.41,36.64,143.35,4,176.19"></path>
+      <path fill="none" stroke={colour} stroke-width={weight} stroke-linecap="round" stroke-linejoin="round" d="M90,90.3 C57.27,57.55,36.77,36.72,4,4"></path>
+    </svg>
+  )
+}

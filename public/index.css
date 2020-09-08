@@ -127,9 +127,14 @@ label {
 .component-loader {
   padding-bottom: 30px;
 }
-/* 
+
 .orchide {
-  font-family: "Orchide";
+  font-family: "Orchide" !important;
   font-size: 3rem !important;
   text-transform: capitalize;
-} */
+}
+
+.orchide span {
+  font-family: "Orchide" !important;
+  text-transform: capitalize !important;
+}

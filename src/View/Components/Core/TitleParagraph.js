@@ -19,7 +19,7 @@ class TitleParagraph extends Component {
     const {title, paragraph} = this.state.component;
     return (
     <div className="titlePara-component">
-     <h2 className="section-title"><span className="line">{title}</span></h2>
+     <h2 className="section-title orchide"><span className="line">{title}</span></h2>
      <p>{paragraph}</p>
     </div>
     )

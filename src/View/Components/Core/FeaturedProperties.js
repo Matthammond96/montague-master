@@ -55,7 +55,7 @@ class FeaturedProperties extends Component {
     console.log(this.state.fetched_properties);
     return (
       <div className="featured-properties page" ref={this.ref}>
-        <h2 className="title">{title}</h2>
+        <h2 className="title orchide">{title}</h2>
 
         <div className="properties">
           {this.state.fetched_properties.map(property => {

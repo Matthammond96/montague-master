@@ -45,7 +45,7 @@ class ImageText extends Component {
         <div className="content">
           <div className="padding">
             {title && (
-              <h2 className="title">{title}</h2>  
+              <h2 className="title orchide">{title}</h2>  
             )}
             {title && (
               <div className="under-line"></div>

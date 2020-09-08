@@ -165,7 +165,7 @@ class Listings extends Component {
                   <Link className="" to={propertyLink}>
                     <div className="image" onMouseEnter={this.onMouseOverHandle} onMouseLeave={this.onMouseLeaveHandle}>
                       <div className="thumbnails">
-                        {photos.slice(0).reverse().map(() => (
+                        {photos.slice(0, 4).reverse().map(() => (
                           photos.length > 1 && (
                             <div className="thumb">
                               <div className="fill"></div>
@@ -174,7 +174,7 @@ class Listings extends Component {
                           ))}
                       </div>
                       <div className="image-container">
-                      {photos.map((photo, key) => {
+                      {photos.slice(0, 4).map((photo, key) => {
                         return (
                           <img className={key === 0 && "active"} src={photo.fields.file.url}></img>
                         )
