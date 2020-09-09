@@ -6,9 +6,12 @@ class Teams extends Component {
   constructor(props) {                      
     super(props);
 
+    this.ref = React.createRef();
+
     this.state = {
       component: props.component,
-      teams: []
+      teams: [],
+      loaded: false
     };
   }
 
@@ -36,19 +39,32 @@ class Teams extends Component {
 
   async componentDidMount() {
     await this.fetchTeamMembers();
+
+    const options = {root: null, rootMargin: "500px", threshold: [0.1, 0.5, 1.0]}
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.intersectionRatio === 1) {
+        console.log("a");
+        this.setState({
+          visible: true
+        });
+      }
+    }, options);
+
+    if (this.ref.current) {
+      observer.observe(this.ref.current);
+    }
   } 
 
   render() {
-    console.log(this.state.teams)
     return (
-      <section>
+      <section className="featured-properties page" ref={this.ref}>
         <h2 className="section-title orchide"><span className="line">{this.state.component.title}</span></h2>
         {this.state.loaded && (
           <div className="properties">
             {this.state.teams.items.map(team => {
-              console.log(this.state.teams)
               return (
-                <div className="item visible">
+                <div className={`item ${this.state.visible && " visible"}`}>
                   <img src={team.fields.photo.fields.file.url}></img>
                   <h2>{team.fields.name}</h2>
                   <h3>{team.fields.jobTitle}</h3>

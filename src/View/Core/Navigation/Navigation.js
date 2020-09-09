@@ -90,7 +90,7 @@ class Navigation extends Component {
             </div>
           </div>
           <nav className="parent-navigation">
-            <NavigationSlider navigation={this.state.navigation} nav_state={this.state.nav_state}></NavigationSlider>
+            <NavigationSlider navigation={this.state.navigation} nav_state={this.state.nav_state} onClickHanlder={this.onClickHanlder}></NavigationSlider>
             <div onClick={this.onClickHanlder} className={`background-blur${this.state.nav_state ? " open" : ""}`}></div>
           </nav>
         </div>

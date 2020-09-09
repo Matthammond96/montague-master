@@ -15,21 +15,18 @@ class NavigationSlider extends Component {
       nav_state: props.nav_state
     }
 
+    this.onClickHanlder = props.onClickHanlder;
     this.showSlide = this.showSlide.bind(this);
   }
 
   showSlide(e, id) {
-    console.log("aa");
-    const slider = document.getElementById(id).querySelector(".navigation-slider")
-    slider.className = "navigation-slider open"
+    const slider = document.getElementById(id).querySelector(".navigation-slider");
+    slider.className = "navigation-slider open";
   }
 
   closeSlide(e, id) {
-    console.log(id);
     const slider = document.getElementById(id).querySelector(".navigation-slider");
-    slider.className = "navigation-slider"
-
-    console.log(slider.classList);
+    slider.className = "navigation-slider";
   }
 
   componentDidUpdate() {
@@ -39,7 +36,7 @@ class NavigationSlider extends Component {
 
   render() {
     return(
-      <ParentItem navigation={this.state.navigation} nav_state={this.state.nav_state} showSlide={this.showSlide} closeSlide={this.closeSlide}></ParentItem>
+      <ParentItem navigation={this.state.navigation} onClickHanlder={this.onClickHanlder} nav_state={this.state.nav_state} showSlide={this.showSlide} closeSlide={this.closeSlide}></ParentItem>
     )
   }
 }
@@ -47,7 +44,7 @@ class NavigationSlider extends Component {
 export default NavigationSlider
 
 const ParentItem = props => {
-  const {navigation, nav_state, showSlide, closeSlide, title, id} = props;
+  const {navigation, nav_state, showSlide, closeSlide, title, id, onClickHanlder} = props;
   return (
     <div className={`navigation-slider${nav_state === true ? " open" : ""}`}>
       <div className="navigation-items">
@@ -65,14 +62,14 @@ const ParentItem = props => {
             const id = item.sys.id;
             return (
             <div id={id} className="nav-item">
-              <ChildItem title={title} url={url} parent={links ? true : false} showSlide={showSlide} id={id}></ChildItem>
-              {links && <ParentItem navigation={links} nav_state="false" title={title} url={url} showSlide={showSlide} closeSlide={closeSlide} id={id}></ParentItem>}
+              <ChildItem onClickHanlder={onClickHanlder} title={title} url={url} parent={links ? true : false} showSlide={showSlide} id={id}></ChildItem>
+              {links && <ParentItem navigation={links} nav_state="false" title={title} url={url} showSlide={showSlide} closeSlide={closeSlide} id={id} onClickHanlder={onClickHanlder}></ParentItem>}
             </div>
             )
           } else {
             return (
-            <div className="nav-item">
-              <ChildItem title={title} url={url} parent={links ? true : false}></ChildItem>
+            <div className={url ? "nav-item" : "nav-item heading"}>
+              <ChildItem onClickHanlder={onClickHanlder} title={title} url={url} parent={links ? true : false}></ChildItem>
             </div>
             )
           }
@@ -83,7 +80,7 @@ const ParentItem = props => {
 }
 
 const ChildItem = props => {
-  const {title, url, parent, showSlide, id} = props;
+  const {title, url, parent, showSlide, id, onClickHanlder} = props;
   if (parent)
     return (
       <a href="javascript:void(0)">
@@ -92,7 +89,7 @@ const ChildItem = props => {
     )
   else {
     return (
-      <Link to={url}>
+      <Link to={url} onClick={onClickHanlder}>
         <p>{title}</p>
       </Link>
     )

@@ -114,6 +114,7 @@
   z-index: 2000
   display: block
   transition: right 0.5s
+  overflow-y: auto
 
   .nav-item
     width: calc(100% - 40px)
@@ -136,6 +137,17 @@
         .nav-item-arrow
           float: right
           margin-right: 5px 
+
+  .nav-item.heading:nth-child(2)
+    margin-top: 0 !important
+    
+  .nav-item.heading
+    margin-top: 30px
+
+    p
+      font-size: 14px
+
+  
       
   .navigation-header
     border-bottom: 1px solid #ccc
