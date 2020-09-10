@@ -9,6 +9,7 @@ import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 import "../../Styles/property.sass"
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import ContactForm from '../Core/ContactForm';
 
 class Property extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Property extends Component {
     
       const promise = await this.state.property.components.map((component, key) => {
         if (key === 0) return id = id + component.sys.id
-        id = id + `,${component.sys.id}`
+        return id = id + `,${component.sys.id}`
       });
       await Promise.all(promise);
 
@@ -48,9 +49,9 @@ class Property extends Component {
 
   getProperty() {
     client
-    .getEntry(this.state.id)
+    .getEntries({content_type: "properties", "fields.propertyHandle[match]": this.state.id})
     .then(async entry => {
-      await this.setState({property: entry.fields})
+      await this.setState({property: entry.items[0].fields})
       this.getComponents();
     })
     .catch(err => console.log(err));
@@ -58,7 +59,7 @@ class Property extends Component {
 
   async componentDidUpdate() {
     const id = window.location.pathname.replace("/property/", "");
-    if (this.state.id != id) {
+    if (this.state.id !== id) {
       await this.setState({
         id: id,
         loaded: false,
@@ -89,7 +90,7 @@ class Property extends Component {
                       <button class="btn">Enquire Now</button>
                     </div>
                   </div>
-                <img src={this.state.property.photos[0].fields.file.url}></img>
+                <img alt={this.state.property.photos[0].fields.file.title} src={this.state.property.photos[0].fields.file.url}></img>
               </div>
             ) : (
               <CarouselProvider className="property-image-fixed" infinite naturalSlideWidth={100} naturalSlideHeight={100} totalSlides={this.state.property.photos.length} visibleSlides={this.visibleSlides}>
@@ -107,7 +108,7 @@ class Property extends Component {
                               <button class="btn">Enquire Now</button>
                             </div>
                           </div>
-                          <img src={photo.fields.file.url}></img>
+                          <img alt={photo.fields.file.title} src={photo.fields.file.url}></img>
                         </div>
                       </Slide>
                     ): (
@@ -118,7 +119,7 @@ class Property extends Component {
                               <h3>{photo.fields.description}</h3>
                             </div>
                           </div>
-                          <img src={photo.fields.file.url}></img>
+                          <img alt={photo.fields.file.title} src={photo.fields.file.url}></img>
                         </div>
                       </Slide>
                     )}
@@ -163,8 +164,13 @@ class Property extends Component {
               </div>
             )}
              
-            </div></div>
+            </div>
+            <ContactForm viewing={true}></ContactForm>
+            {/* <VerticalSpacer component={{spacingHeightPx: "50"}}></VerticalSpacer> */}
+          </div>
         ) : null}
+
+        
       </div>
       
     )

@@ -15,7 +15,7 @@ class CookieBanner extends Component {
   }
 
   onClickHandler = async () => {
-    const promise = await this.setCookie();
+    await this.setCookie();
 
     this.setState({
       show_me: false

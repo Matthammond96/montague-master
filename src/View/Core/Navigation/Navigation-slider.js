@@ -1,7 +1,6 @@
-import React, { Component, useState } from 'react'
+import React, { Component,  } from 'react'
 import { Link } from 'react-router-dom';
 import {ArrowRight, ArrowLeft} from '../../Styles/icons';
-import { client } from '../../../ContentfulContext';
 
 
 class NavigationSlider extends Component {
@@ -30,8 +29,8 @@ class NavigationSlider extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.navigation != this.props.navigation) { this.setState({navigation: this.props.navigation}) }
-    if (this.state.nav_state != this.props.nav_state) { this.setState({nav_state: this.props.nav_state}) }
+    if (this.state.navigation !== this.props.navigation) { this.setState({navigation: this.props.navigation}) }
+    if (this.state.nav_state !== this.props.nav_state) { this.setState({nav_state: this.props.nav_state}) }
   }
 
   render() {
@@ -49,7 +48,7 @@ const ParentItem = props => {
     <div className={`navigation-slider${nav_state === true ? " open" : ""}`}>
       <div className="navigation-items">
         <div className="navigation-header">
-          {title ? <a href="javascript:void(0)" onClick={(e) => closeSlide(e, id)}><p><ArrowLeft colour="#000" weight="12"></ArrowLeft>{title}</p></a>
+          {title ? <Link to="#" onClick={(e) => closeSlide(e, id)}><p><ArrowLeft colour="#000" weight="12"></ArrowLeft>{title}</p></Link>
           : <ChildItem title="Montague" url="/"></ChildItem>}
           
         </div>
@@ -74,6 +73,7 @@ const ParentItem = props => {
             )
           }
         }
+        return null
       })}
     </div>
   )
@@ -83,9 +83,9 @@ const ChildItem = props => {
   const {title, url, parent, showSlide, id, onClickHanlder} = props;
   if (parent)
     return (
-      <a href="javascript:void(0)">
+      <Link to="#">
         <p onClick={(e) => showSlide(e, id)}>{title}<span className="nav-item-arrow"><ArrowRight colour="#000" weight="12"></ArrowRight></span></p>
-      </a>
+      </Link>
     )
   else {
     return (

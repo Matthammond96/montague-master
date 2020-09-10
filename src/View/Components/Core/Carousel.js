@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 class Carousel extends Component {
   constructor(props) {                      
@@ -11,7 +10,7 @@ class Carousel extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }
@@ -24,13 +23,13 @@ class Carousel extends Component {
           </div>
           <div className="box">
             <div className="image-left">
-              <img src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-01.jpg/jcr:content/renditions/cq5dam.web.2880.jpeg"></img>
+              <img alt="" src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-01.jpg/jcr:content/renditions/cq5dam.web.2880.jpeg"></img>
             </div>
             <div className="image-middle">
-              <img src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-02.jpg/_jcr_content/renditions/cq5dam.web.1920.jpeg"></img>
+              <img alt="" src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-02.jpg/_jcr_content/renditions/cq5dam.web.1920.jpeg"></img>
             </div>
             <div className="image-right">
-              <img src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-03.jpg/jcr:content/renditions/cq5dam.web.1242.jpeg"></img>
+              <img alt="" src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-03.jpg/jcr:content/renditions/cq5dam.web.1242.jpeg"></img>
             </div>
         </div>
       </div>

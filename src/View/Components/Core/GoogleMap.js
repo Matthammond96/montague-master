@@ -23,7 +23,7 @@ export class MapContainer extends Component {
 
   async geocode(geocoder) {
     await geocoder.geocode({'address': "13 spenlow apartment, wenlock road, london, n1 7gh"}, async (results, status) => {
-      if (status == 'OK') {
+      if (status === 'OK') {
         await this.setState({
           location: {
             lat: results[0].geometry.location.lat(),

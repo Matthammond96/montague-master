@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Responsive } from "../Responsive";
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 class ProductGallery extends Component {
@@ -13,7 +13,7 @@ class ProductGallery extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }
@@ -29,10 +29,10 @@ class ProductGallery extends Component {
         <Responsive displayIn={["Laptop"]}>
           <div className="product-gallery-component">
             {images.map(image => {
-              const {url} = image.fields.file
+              const {url, title} = image.fields.file
               return(
                 <div className="image-container">
-                  <img src={url}></img>
+                  <img alt={title} src={url}></img>
                 </div>
               )
             })}

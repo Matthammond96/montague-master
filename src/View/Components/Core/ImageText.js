@@ -14,16 +14,17 @@ class ImageText extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }
 
   componentDidMount() {
-    const options = {root: null, rootMargin: "500px", threshold: [0.1, 0.5, 1.0]}
+    const options = {root: null, rootMargin: "0px", threshold: [0.1, 0.5, 1.0]}
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.intersectionRatio === 1) {
+      console.log(entry);
+      if (entry.intersectionRatio > 0.2 && !this.state.visible) {
         this.setState({
           visible: true
         });
@@ -40,7 +41,7 @@ class ImageText extends Component {
     return (
       <div ref={this.ref} className={`imageText-component page ${imageOnTheLeft && 'flip'} ${this.state.visible && 'visible'}`}>
         <div className="image">
-          <img src={image.fields.file.url}></img>
+          <img alt={image.fields.file.title} src={image.fields.file.url}></img>
         </div>
         <div className="content">
           <div className="padding">

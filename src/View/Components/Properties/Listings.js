@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import "../../Styles/listings.sass";
 import { client } from '../../../ContentfulContext';
 import { Link } from 'react-router-dom';
-import {BedIcon, BathIcon} from '../../Styles/icons'
 import FilterBar from './FilterBar';
 
 class Listings extends Component {
@@ -23,16 +22,17 @@ class Listings extends Component {
 
   onMouseLeaveHandle = (e) => {
     if (this.state.target === "") return;
-    const count = this.state.target.childNodes.length;
+    let target = this.state.target;
+    const count = target.childNodes.length;
     
     if (count > 1 || this.t) {
       clearInterval(this.state.intervalId);
-      this.state.target.querySelector('.active').className = "";
-      this.state.target.childNodes[0].className = "active";
+      target.querySelector('.active').className = "";
+      target.childNodes[0].className = "active";
       this.setState({ currentCount: 0, count: 0 });
 
       for (let i = 0; i < this.state.target.previousElementSibling.childNodes.length; i++) {
-        this.state.target.previousElementSibling.childNodes[i].className = "thumb";
+        target.previousElementSibling.childNodes[i].className = "thumb";
       }
     }
     
@@ -59,15 +59,16 @@ class Listings extends Component {
   }
 
   timer = () => {
+    let target = this.state.target
     var newCount = this.state.currentCount - 1;
-    const thumbs = this.state.target.previousElementSibling;
+    const thumbs = target.previousElementSibling;
     
     if(newCount >= 0) { 
       var count = this.state.count + 1;
       if (newCount > 0) {
         thumbs.childNodes[count].className += " active";
-        this.state.target.childNodes[count].className = "active";
-        this.state.target.childNodes[count - 1].className = "";
+        target.childNodes[count].className = "active";
+        target.childNodes[count - 1].className = "";
       }
 
       this.setState({ currentCount: newCount, count: count });
@@ -78,29 +79,26 @@ class Listings extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }
 
   applyFilter = filters => e => {
     e.preventDefault();
-
-    console.log(filters);
-
     let compiledFilters = {"content_type": "properties"};
 
-    if (filters.location != "") {
+    if (filters.location !== "") {
       const filter = {"fields.location": filters.location}
       compiledFilters = {...compiledFilters, ...filter};
     }
 
-    if (filters.property_type != "") {
+    if (filters.property_type !== "") {
       const filter = {"fields.type": filters.property_type}
       compiledFilters = {...compiledFilters, ...filter};
     }
 
-    if (filters.bedrooms != "") {
+    if (filters.bedrooms !== "") {
       const filter = {"fields.bedrooms": filters.bedrooms}
       compiledFilters = {...compiledFilters, ...filter};
     }
@@ -157,8 +155,8 @@ class Listings extends Component {
 
         <div className={this.state.cardSize ? "properties-list large" : "properties-list"}>
           {this.state.properties.map(property => {
-            const {name, location, price, type, bedrooms, bathroom, propertySizeSqm, photos} = property.fields;
-            const propertyLink = `/property/${property.sys.id}`;
+            const {name, location, price, bedrooms, bathroom, propertySizeSqm, photos, propertyHandle} = property.fields;
+            const propertyLink = `/property/${propertyHandle}`;
             return (
                 <div className="listing-card">
                   <div className="content">
@@ -176,7 +174,7 @@ class Listings extends Component {
                       <div className="image-container">
                       {photos.slice(0, 4).map((photo, key) => {
                         return (
-                          <img className={key === 0 && "active"} src={photo.fields.file.url}></img>
+                          <img className={key === 0 && "active"} alt={photo.fields.file.title} src={photo.fields.file.url}></img>
                         )
                       })}
                       </div>

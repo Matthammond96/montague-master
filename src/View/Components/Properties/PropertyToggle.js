@@ -19,7 +19,7 @@ class PropertyToggle extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }

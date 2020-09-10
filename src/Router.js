@@ -3,7 +3,6 @@ import { withRouter, Route, Switch } from 'react-router-dom';
 import { client } from './ContentfulContext';
 import ComponentLoader from './ComponentLoader';
 import './View/Styles/components.sass';
-
 import Nav from './View/Core/Navigation/Navigation';
 import Footer from './View/Core/Footer/Footer';
 import CookieBanner from './View/Core/CookieBanner';
@@ -31,9 +30,9 @@ class AppRouter extends Component {
     .then(entries => {
       let site_map = [];
       entries.items.map(entry => {
-        site_map.push({page: {"id": entry.sys.id, "title": entry.fields.title, "url": entry.fields.url, "navColour": entry.fields.whiteNavigation}});
+        return site_map.push({page: {"id": entry.sys.id, "title": entry.fields.title, "url": entry.fields.url, "navColour": entry.fields.whiteNavigation}});
       })
-      this.setState({site_map: site_map, loaded: true})
+      return this.setState({site_map: site_map, loaded: true})
     })
     .catch(err => console.log(err));
   }

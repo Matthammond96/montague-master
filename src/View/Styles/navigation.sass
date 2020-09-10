@@ -155,8 +155,6 @@
 
     p
       font-size: 14px
-
-  
       
   .navigation-header
     border-bottom: 1px solid #ccc
@@ -220,6 +218,7 @@
   margin: 0 auto;
   background-color: #fff;
   position: relative;
+  padding-top: 30px
 
   .footer-logo
     text-align: center
@@ -268,7 +267,7 @@
     max-height: 0px
     overflow: hidden
     transition: all 1s
-    padding-top: 3px
+    padding-top: 0px
     width: 100%
 
   .hide-fields.active
@@ -299,31 +298,52 @@
   width: 100%
   background-color: #eee
   color: #000
-  padding: 5px
   position: fixed
   bottom: 0
   left: 0
   right: 0
+  z-index: 100
 
   .page-container
     display: flex
     align-items: center
     max-width: 1400px
+    padding: 5px 25px
+    width: calc( 100% - 50px )
 
   .cookie-button
-    width: 200px
+    flex-basis: 200px
     margin-left: 20px
+  
+  .cookie-text
 
     .btn
       border: 1px solid #fff
-  p
+  p    
     font-size: 10px
     line-height: 1rem
+
+@media (max-width: 800px)
+  .page-container
+    display: block !important
+    padding: 0 25px
+    width: calc( 100% - 100px )
+
+    .cookie-button
+      margin-left: 0
+      text-align: center
 
 @media (max-width: 600px)
   #navigation-contianer
     width: 90%
 
+    .nav-item
+      p
+        font-size: 14px
+
+    .nav-item.heading
+      p
+        font-size: 16px
   .footer
     margin-top: 0px !important
     padding: 0 20px

@@ -27,7 +27,7 @@ class Destination extends Component {
 
   async componentDidUpdate() {
     const id = window.location.pathname.replace("/destination/", "");
-    if (this.state.id != id) {
+    if (this.state.id !== id) {
       await this.setState({
         id: id,
         loaded: false,

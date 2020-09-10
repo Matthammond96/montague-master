@@ -5,20 +5,14 @@ class VideoComponent extends Component {
   constructor(props) {                      
     super(props);
 
-    let ref = React.createRef();
-
     this.state = {
       component: props.component,
       play: false
     };
   }
 
-  play() {
-    
-  }
-
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }

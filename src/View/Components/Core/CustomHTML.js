@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { Link } from 'react-router-dom';
 
 class CustomHTML extends Component {
   constructor(props) {                      
@@ -12,7 +11,7 @@ class CustomHTML extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }

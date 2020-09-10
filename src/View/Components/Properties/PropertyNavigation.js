@@ -19,7 +19,13 @@ export const PropertyNavigation = props => {
     return () => {
       window.removeEventListener('scroll', () => handleScroll);
     };
-  }, []);
+  });
+
+  const scrollWithOffset = (el) => {
+    const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+    const yOffset = -150; 
+    window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
+  }
 
   return (
     <div className="property-navigation" ref={ref}>  
@@ -37,22 +43,19 @@ export const PropertyNavigation = props => {
             if (component.fields.tite) {
               linkTo = "#" + component.fields.tite.replace(" ", "-");
               title = component.fields.tite;
-                    }
-
-            const scrollWithOffset = (el) => {
-              const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-              const yOffset = -180; 
-              window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
             }
 
+        
             return (
               <div className="tab-link active">
                 <HashLink to={linkTo} scroll={el => scrollWithOffset(el)}><p>{title}</p></HashLink>
               </div>
             )
           })}
+
+            
                 
-          <a href="/contact-us" className="btn property-btn">Schedule Viewing</a>
+          <HashLink to="#contact-us" scroll={el => scrollWithOffset(el)} className="btn property-btn">Schedule Viewing</HashLink>
         </div>
       </div>
     </div>

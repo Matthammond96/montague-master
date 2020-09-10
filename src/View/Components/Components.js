@@ -10,6 +10,7 @@ Components['customHtml'] = require('./Core/CustomHTML').default;
 Components['verticalSpacer'] = require('./Core/VerticalSpacer').default;
 Components['videoBanner'] = require('./Core/VideoComponent').default;
 Components['teams'] = require('./Core/Teams').default;
+Components['contactForm'] = require('./Core/ContactForm').default;
 
 // Property Listings
 Components['propertyListings'] = require('./Properties/Listings').default;

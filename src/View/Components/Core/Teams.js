@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { client } from '../../../ContentfulContext';
-import { Link } from 'react-router-dom';
 
 class Teams extends Component {
   constructor(props) {                      
@@ -20,7 +19,7 @@ class Teams extends Component {
     
     const promise = await this.state.component.teamMembers.map((member, key) => {
       if (key === 0) return id = id + member.sys.id
-      id = id + `,${member.sys.id}`
+      return id = id + `,${member.sys.id}`
     });
     await Promise.all(promise);
   
@@ -31,7 +30,7 @@ class Teams extends Component {
   }
 
   async componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
       await this.fetchTeamMembers();
     }
@@ -40,10 +39,10 @@ class Teams extends Component {
   async componentDidMount() {
     await this.fetchTeamMembers();
 
-    const options = {root: null, rootMargin: "500px", threshold: [0.1, 0.5, 1.0]}
+    const options = {root: null, rootMargin: "0px", threshold: [0.1, 0.5, 1.0]}
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.intersectionRatio === 1) {
+      if (entry.intersectionRatio > 0.2 && !this.state.visible) {
         console.log("a");
         this.setState({
           visible: true
@@ -65,7 +64,7 @@ class Teams extends Component {
             {this.state.teams.items.map(team => {
               return (
                 <div className={`item ${this.state.visible && " visible"}`}>
-                  <img src={team.fields.photo.fields.file.url}></img>
+                  <img alt={team.fields.photo.fields.file.title} src={team.fields.photo.fields.file.url}></img>
                   <h2>{team.fields.name}</h2>
                   <h3>{team.fields.jobTitle}</h3>
                   <p>{team.fields.email}</p>

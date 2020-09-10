@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import { client } from '../../../ContentfulContext';
 
 class FilterBar extends Component {
   constructor(props) {                      
@@ -35,7 +34,7 @@ class FilterBar extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
   }

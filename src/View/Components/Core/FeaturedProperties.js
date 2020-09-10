@@ -24,7 +24,7 @@ class FeaturedProperties extends Component {
   }
 
   async componentDidUpdate() {
-    if (this.state.component != this.props.component) {
+    if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
       await this.fetchProperties();
     }
@@ -33,10 +33,10 @@ class FeaturedProperties extends Component {
   async componentDidMount() {
     await this.fetchProperties();
 
-    const options = {root: null, rootMargin: "500px", threshold: [0.1, 0.5, 1.0]}
+    const options = {root: null, rootMargin: "0px", threshold: [0.1, 0.5, 1.0]}
 
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.intersectionRatio === 1) {
+      if (entry.intersectionRatio > 0.1 && !this.state.visible) {
         console.log("a");
         this.setState({
           visible: true
@@ -59,13 +59,13 @@ class FeaturedProperties extends Component {
 
         <div className="properties">
           {this.state.fetched_properties.map(property => {
-            const {name, location, description, photos, bedrooms, bathroom, propertySizeSqm} = property.fields;
+            const {name, photos, bedrooms, bathroom, propertySizeSqm} = property.fields;
             const {id} = property.sys;
 
            return (
                 <div className={`item ${this.state.visible && " visible"}`}>
                   <Link to={`/property/${id}`}>
-                  <img src={photos[0].fields.file.url}></img>
+                  <img alt={photos[0].fields.file.title} src={photos[0].fields.file.url}></img>
                   <h2>{name}</h2>
                   <h3>{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</h3>
                   <p>A minimalist masterpiece - this townhouse in the West Village is truly something very special.</p>

@@ -50,7 +50,7 @@ class Navigation extends Component {
   }
 
   async componentDidUpdate() {
-    if (this.state.colour != this.props.colour) {
+    if (this.state.colour !== this.props.colour) {
       await this.setState({colour: this.props.colour})
     }
   }
