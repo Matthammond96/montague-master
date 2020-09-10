@@ -1,8 +1,12 @@
 .page-load
   padding-top: 104px
+  position: relative
+  width: 100%
+  overflow: hidden
   
 .fixed
   position: fixed
+  top: 0
   width: 100%
   
   top: 0
@@ -196,6 +200,12 @@
   padding: 20px 20px 10px 20px
 
 @media (max-width: 600px)
+  .page-load
+    padding-top: 84px
+
+  .navigation-slider
+    width: 260px
+
   #navigation-contianer .logo img
     height: 40px
 
@@ -304,3 +314,17 @@
   p
     font-size: 10px
     line-height: 1rem
+
+@media (max-width: 600px)
+  .footer
+    margin-top: 0px !important
+    padding: 0 20px
+    .footer-groups
+      display: flex
+      flex-wrap: wrap
+      .footer-item
+        flex-basis: 50%
+        margin: 0 !important
+
+        &.newsletter-form
+          flex-basis: 100%

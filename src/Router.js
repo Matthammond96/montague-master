@@ -16,7 +16,8 @@ class AppRouter extends Component {
     this.state = {
       show_cookies: true,
       nav_colour: false,
-      site_map: []
+      site_map: [],
+      loaded: false
     }
   }
 
@@ -32,7 +33,7 @@ class AppRouter extends Component {
       entries.items.map(entry => {
         site_map.push({page: {"id": entry.sys.id, "title": entry.fields.title, "url": entry.fields.url, "navColour": entry.fields.whiteNavigation}});
       })
-      this.setState({site_map: site_map})
+      this.setState({site_map: site_map, loaded: true})
     })
     .catch(err => console.log(err));
   }
@@ -64,16 +65,20 @@ class AppRouter extends Component {
 
   render() {
     return (
-      <div className="page-load">
+      <div>
+      {this.state.loaded && (
+        <div className="page-load">
           <Nav colour={this.state.nav_colour} pathname={this.props.location.pathname}></Nav>
           {this.authSwitch()}
           <Footer></Footer>
           {this.state.show_cookies ? (
             <CookieBanner></CookieBanner>
           ) : null}
+        </div>
+      )}
       </div>
     )
-  };
+  }
 }
 
 export default withRouter(AppRouter);

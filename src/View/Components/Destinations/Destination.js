@@ -1,26 +1,60 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { client } from '../../../ContentfulContext';
+import Components from '../Components';
 
 class Destination extends Component {
   constructor(props) {                      
     super(props);
 
     this.state = {
-      component: props.component
+      id: window.location.pathname.replace("/destination/", ""),
+      loaded: false,
+      destination: {},
+      components: [],
     };
   }
 
-  componentDidUpdate() {
-    if (this.state.component != this.props.component) {
-      this.setState({component: this.props.component});
+  getDestination() {
+    client
+    .getEntries({content_type: "destinations", "fields.handle[match]": this.state.id})
+    .then(async entry => {
+      console.log(entry);
+      await this.setState({destination: entry.items[0].fields})
+      this.getComponents();
+    })
+    .catch(err => console.log(err));
+  }
+
+  async componentDidUpdate() {
+    const id = window.location.pathname.replace("/destination/", "");
+    if (this.state.id != id) {
+      await this.setState({
+        id: id,
+        loaded: false,
+        destination: {},
+        components: [],
+      });
+      this.getDestination();
     }
+  }
+
+  componentDidMount() {
+    this.getDestination();
   }
 
   render() {
     return (
       <section>
-        <h2 className="section-title"><span className="line">The Gallery</span></h2>
-        <div></div>
+         {this.state.destination.components && (
+              <div>
+                {this.state.destination.components.map(component => {
+                  const contentType = component.sys.contentType.sys.id;
+                  const ComponentToRender = Components[contentType];
+                  
+                  return <ComponentToRender component={component.fields}/>
+                })}
+              </div>
+            )}
       </section>
     )
   }

@@ -49,7 +49,6 @@ class Property extends Component {
   }
 
   getProperty() {
-    console.log("fetcg");
     client
     .getEntry(this.state.id)
     .then(async entry => {
