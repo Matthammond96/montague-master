@@ -80,11 +80,13 @@
         margin-bottom: 40px
         margin-top: -10px
 
+  .property-navigation
+    min-height: 53px
+
   .property-tabs
     width: 100%
     background-color: #ddd
-    position: sticky
-    top: 102px
+    position: relative
     z-index: 4
 
     .tabs-container
@@ -332,6 +334,18 @@
         &:hover
           background-size: 100% 1px
 
+.property .property-image .content-overlay .content
+  flex: 0
+  flex-basis: calc( 100% -  50px)
+  margin: 0 auto
+
+.property-tabs.sticky
+  position: fixed
+  top: 104px
+  width: 95%;
+  margin: 0 auto;
+  max-width: 2000px;
+
 @media (max-width: 700px)
   .carousel 
     .arrow-container
@@ -341,7 +355,77 @@
       svg
         height: 15px
 
-.property .property-image .content-overlay .content
-  flex: 0
-  flex-basis: calc( 100% -  50px)
-  margin: 0 auto
+  .property-info
+    padding: 0 20px
+
+@media (max-width: 600px)
+  .property-tabs
+    &.sticky
+      top: 84px
+      
+    .tab-link
+      display: none
+
+    .property-btn
+      width: 100%
+
+  
+
+  .highlight-container
+    margin-top: 40px
+    margin-bottom: 40px
+
+    .product-highlight
+      flex-basis: 100% !important
+
+    .product-highlight:nth-last-child(2)
+      border-bottom: 0 solid #eee
+
+.property-sub-container
+  margin-top: 40px
+  .section-title
+    padding-top: 0px
+    margin-top: 0px
+    margin-bottom: 40px
+
+
+@media (max-width: 760px)
+	table, thead, tbody, th, td, tr 
+		display: block
+
+  tr:nth-child(1)
+    display: none
+
+
+  .table-row
+    border-top: 1px solid #cccccc
+    border-bottom: 0px solid #cccccc
+    .mobLeft
+      text-align: center
+    .peas
+      padding-left: 50%
+      position: relative
+      &:before
+       position: absolute
+       left: 0px
+       top: 5px
+       width: 45%
+       padding-right: 10px
+       white-space: nowrap
+    .peas:nth-child(2)
+      &:before
+        content: "Bedroom"
+    .peas:nth-child(3)
+      &:before
+        content: "Bathroom"
+    .peas:nth-child(4)
+      &:before
+        content: "SQFT"
+    .peas:nth-child(5)
+      &:before
+        content: "Listing Price"
+	.property-tabbed-content
+    margin-bottom: 0
+
+.mobLeft
+  padding-left: 0px !important

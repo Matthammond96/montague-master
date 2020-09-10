@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { client } from '../../../ContentfulContext';
-import Carousel from '../Core/Carousel';
-import ContactForm from './ContactForm';
+import {PropertyNavigation} from './PropertyNavigation';
 import PropertyToggle from './PropertyToggle';
 import SubProperties from './SubProperties';
 import ProductGallery from '../Core/ProductGallery';
 import VideoComponent from '../Core/VideoComponent';
 import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 import "../../Styles/property.sass"
-import { HashLink } from 'react-router-hash-link';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
@@ -16,13 +14,12 @@ class Property extends Component {
   constructor(props) {
     super(props);
 
-    var visibleSlides;
-
     this.state = {
       id: window.location.pathname.replace("/property/", ""),
       property: {},
       components: [],
-      loaded: false
+      loaded: false,
+      setSticky: false
     };
   }
 
@@ -39,6 +36,7 @@ class Property extends Component {
       client.getEntries({"sys.id[in]": id})
       .then(entry => {
         this.setState({components: entry, loaded: true});
+        window.addEventListener('scroll', this.handleScroll);
       })
       .catch(err => console.log(err));
       
@@ -71,7 +69,7 @@ class Property extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.getProperty();
   }
 
@@ -133,44 +131,8 @@ class Property extends Component {
               </CarouselProvider>
             )}              
             </div>
-            <div className="property-tabs">
-              {this.state.property.components ? (
-                <div id="tabbed-scrolled" className={`tabs-container ${this.state.isTop && 'fix-me'}`}>
-                  {this.state.property.components.map(component => {
-                    let linkTo = "";
-                    let title = "";
-
-                    if (component.fields.title) {
-                      linkTo = "#" + component.fields.title.replace(" ", "-");
-                      title = component.fields.title;
-                    }
-
-                    if (component.fields.tite) {
-                      linkTo = "#" + component.fields.tite.replace(" ", "-");
-                      title = component.fields.tite;
-                    }
-
-                    const scrollWithOffset = (el) => {
-                      const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-                      const yOffset = -180; 
-                      window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
-                    }
-
-                    return (
-                      <div className="tab-link active">
-                        <HashLink to={linkTo} scroll={el => scrollWithOffset(el)}><p>{title}</p></HashLink>
-                      </div>
-                    )
-                  })}
-                
-                  <a href="/contact-us" className="btn property-btn">Schedule Viewing</a>
-                </div>
-              ) : (
-                <div id="tabbed-scrolled" className={`tabs-container ${this.state.isTop && 'fix-me'}`}>
-                  <a href="/contact-us" className="btn property-btn">Schedule Viewing</a>
-                </div>
-              )}
-            </div>
+              
+            <PropertyNavigation components={this.state.property.components}></PropertyNavigation>
 
           <div className="property-container">
 

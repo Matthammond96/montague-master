@@ -46,13 +46,13 @@ class SubProperties extends Component {
                 {subProperties.map(property => {
                   const {name, bedrooms, bathroom, propertySizeSqm, price} = property.fields;
                   return (
-                    <tr>
-                      <td>{name}</td>
-                      <td>{bedrooms}</td>
-                      <td>{bathroom}</td>
-                      <td>{propertySizeSqm}</td>
-                      <td>{price}</td>
-                      <td>
+                    <tr className="table-row">
+                      <td className="mobLeft">{name}</td>
+                      <td className="peas">{bedrooms}</td>
+                      <td className="peas">{bathroom}</td>
+                      <td className="peas">{propertySizeSqm}</td>
+                      <td className="peas">{price}</td>
+                      <td className="mobLeft">
                         <Link to={property.sys.id}>View Property</Link>
                       </td>
                     </tr>
