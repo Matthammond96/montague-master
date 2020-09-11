@@ -22,25 +22,10 @@ class FilterBar extends Component {
     this.setState(filters);
   }
 
-  getFilterOptions() {
-    fetch("https://cdn.contentful.com/spaces/17g0rvry75o4/content_types/properties", {
-      method: 'get',
-      headers: new Headers({
-        'Authorization': 'Bearer F41sAQxqpg5hgxtUIp210r2woL-hiu-d035GmCt9roo'
-      }), 
-    })
-    .then(entry => console.log(entry))
-    .catch(err => console.log(err))
-  }
-
   componentDidUpdate() {
     if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
-  }
-
-  componentDidMount() {
-    this.getFilterOptions();
   }
 
   render() {
@@ -87,7 +72,7 @@ class FilterBar extends Component {
                   <Select onChange={this.onChangeHandler("property_type")} className="input-select-form property" name="Property type" placeholder="Property type" options={property_options} />
                   <Select onChange={this.onChangeHandler("bedrooms")} className="input-select-form bedrooms" name="Bedrooms" placeholder="Bedrooms" options={bedroom_options} />
                   {/* <Select onChange={this.onChangeHandler("price")} className="input-select-form price" placeholder="Price Range" options="" /> */}
-                  <button onClick={this.props.applyFilter(this.state.filters)} className="btn">Search</button>
+                  <button onClick={(e) => this.props.applyFilter(this.state.filters, e)} className="btn">Search</button>
                 </form>
               </div>
             ) : null}

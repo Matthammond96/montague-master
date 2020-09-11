@@ -12,12 +12,15 @@ class Listings extends Component {
     this.state = {
       properties: [],
       component: props.component,
+      id: window.location.pathname.replace("/properties/", ""),
       intervalId: "",
       currentCount: 0,
       target: "",
       count: 0,
       cardSize: false
     }
+
+    this.applyFilter = this.applyFilter.bind(this);
   }
 
   onMouseLeaveHandle = (e) => {
@@ -84,8 +87,8 @@ class Listings extends Component {
     }
   }
 
-  applyFilter = filters => e => {
-    e.preventDefault();
+  applyFilter(filters, e) {
+    // e.preventDefault();
     let compiledFilters = {"content_type": "properties"};
 
     if (filters.location !== "") {
@@ -98,10 +101,17 @@ class Listings extends Component {
       compiledFilters = {...compiledFilters, ...filter};
     }
 
+    if (filters.onPlan !== "") {
+      const filter = {"fields.onPlan": filters.onPlan}
+      compiledFilters = {...compiledFilters, ...filter};
+    }
+
     if (filters.bedrooms !== "") {
       const filter = {"fields.bedrooms": filters.bedrooms}
       compiledFilters = {...compiledFilters, ...filter};
     }
+
+    console.log("a");
 
     client
     .getEntries(compiledFilters)
@@ -110,10 +120,32 @@ class Listings extends Component {
   }
 
   fetchProperties() {
-    client
-    .getEntries({"content_type": "properties"})
-    .then(entry => this.setState({properties: entry.items}))
-    .catch(err => console.log(err));
+    if (this.state.id !== "" && this.state.id !== "/properties") {
+      client
+      .getEntries({"content_type": "urlFilter", "fields.handle": this.state.id})
+      .then(entry => {
+        console.log(entry);
+        if (entry.items.length > 0) {
+          const filters =  {
+            location: "",
+            onPlan: "",
+            property_type: ""
+          }
+
+          if (entry.items[0].fields.locationFilter) filters.location = entry.items[0].fields.locationFilter;
+          if (entry.items[0].fields.planStatus) filters.onPlan = entry.items[0].fields.planStatus;
+          if (entry.items[0].fields.propertyTypeFilter) filters.property_type = entry.items[0].fields.propertyTypeFilter;
+
+          this.applyFilter(filters);
+        }
+      })
+      .catch(err => console.log(err))
+    } else {
+      client
+      .getEntries({"content_type": "properties"})
+      .then(entry => this.setState({properties: entry.items}))
+      .catch(err => console.log(err));
+    }
   }
 
   setCardSizeSmall = () => {
