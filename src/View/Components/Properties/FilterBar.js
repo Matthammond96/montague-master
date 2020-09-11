@@ -6,10 +6,11 @@ class FilterBar extends Component {
     super(props);
 
     this.state = {
-      component: props.component,
       bedroomFilter: props.bedroomFilter,
       locationFilters: props.locationFilters,
       propertyTypeFilter: props.propertyTypeFilter,
+      locationFilterDefault: props.locationFilterDefault,
+      typeFilterDefault: props.typeFilterDefault,
       filters: {
         location: "",
         property_type: "",
@@ -27,8 +28,16 @@ class FilterBar extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.component !== this.props.component) {
-      this.setState({component: this.props.component});
+    if (this.state.locationFilterDefault != this.props.locationFilterDefault) {
+      let filters = this.state.filters;
+      filters.location = this.props.locationFilterDefault;
+      this.setState({locationFilterDefault: this.props.locationFilterDefault, filters: filters})
+    }
+
+    if (this.state.typeFilterDefault != this.props.typeFilterDefault) {
+      let filters = this.state.filters;
+      filters.property_type = this.props.typeFilterDefault;
+      this.setState({typeFilterDefault: this.props.typeFilterDefault, filters: filters})
     }
   }
 
@@ -57,8 +66,8 @@ class FilterBar extends Component {
             {showFilter ? (
               <div className="listing-form-container">
                 <form className="listing-form">
-                  <Select onChange={this.onChangeHandler("location")} className="input-select-form destinations" name="Destinations" placeholder="Destinations" options={destinations_options} />
-                  <Select onChange={this.onChangeHandler("property_type")} className="input-select-form property" name="Property type" placeholder="Property type" options={property_options} />
+                  <Select onChange={this.onChangeHandler("location")} className="input-select-form destinations" name="Destinations" placeholder="Destinations" value={this.state.locationFilterDefault !== "" &&  {value: this.state.filters.location, label: this.state.filters.location}} options={destinations_options} />
+                  <Select onChange={this.onChangeHandler("property_type")} className="input-select-form property" name="Property type" placeholder="Property type" value={this.state.typeFilterDefault !== "" && {value: this.state.filters.property_type, label: this.state.filters.property_type}} options={property_options} />
                   <Select onChange={this.onChangeHandler("bedrooms")} className="input-select-form bedrooms" name="Bedrooms" placeholder="Bedrooms" options={bedroom_options} />
                   {/* <Select onChange={this.onChangeHandler("price")} className="input-select-form price" placeholder="Price Range" options="" /> */}
                   <button onClick={(e) => this.props.applyFilter(this.state.filters, e)} className="btn">Search</button>

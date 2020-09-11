@@ -14,6 +14,8 @@ class Listings extends Component {
       component: props.component,
       id: window.location.pathname.replace("/properties/", ""),
       intervalId: "",
+      locationFilterDefault: "",
+      typeFilterDefault: "",
       currentCount: 0,
       target: "",
       count: 0,
@@ -136,6 +138,8 @@ class Listings extends Component {
       compiledFilters = {...compiledFilters, ...filter};
     }
 
+    console.log(compiledFilters);
+
     client
     .getEntries(compiledFilters)
     .then(entry => this.setState({properties: entry.items}))
@@ -148,15 +152,23 @@ class Listings extends Component {
       .getEntries({"content_type": "urlFilter", "fields.handle": this.state.id})
       .then(entry => {
         if (entry.items.length > 0) {
+          
+
           const filters =  {
             location: "",
             onPlan: "",
             property_type: ""
           }
 
-          if (entry.items[0].fields.locationFilter) filters.location = entry.items[0].fields.locationFilter;
+          if (entry.items[0].fields.locationFilter) {
+            filters.location = entry.items[0].fields.locationFilter;
+            this.setState({locationFilterDefault: entry.items[0].fields.locationFilter})
+          }
           if (entry.items[0].fields.planStatus === false || entry.items[0].fields.planStatus === true) filters.onPlan = entry.items[0].fields.planStatus;
-          if (entry.items[0].fields.propertyTypeFilter) filters.property_type = entry.items[0].fields.propertyTypeFilter;
+          if (entry.items[0].fields.propertyTypeFilter) {
+            filters.property_type = entry.items[0].fields.propertyTypeFilter;
+            this.setState({typeFilterDefault: entry.items[0].fields.propertyTypeFilter})
+          }
 
           this.applyFilter(filters);
         }
@@ -188,11 +200,11 @@ class Listings extends Component {
     return (
       <div>
 
-        <FilterBar applyFilter={this.applyFilter} pageTitle={pageTitle} showFilter={showFilter} windowedBanner={windowedBanner} bedroomFilter={bedroomFilter} locationFilters={locationFilters} propertyTypeFilter={propertyTypeFilter}></FilterBar>
+        <FilterBar typeFilterDefault={this.state.typeFilterDefault} locationFilterDefault={this.state.locationFilterDefault} applyFilter={this.applyFilter} pageTitle={pageTitle} showFilter={showFilter} windowedBanner={windowedBanner} bedroomFilter={bedroomFilter} locationFilters={locationFilters} propertyTypeFilter={propertyTypeFilter}></FilterBar>
 
         <div className="view-config">
           <div className="results">
-            <p>Results: 12 of 36</p>
+            <p>Results:  {this.state.properties.length}</p>
           </div>
           <div className="grids">
             <div className="grid-large" onClick={this.setCardSizeSmall}>
