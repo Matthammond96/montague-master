@@ -23,6 +23,22 @@ class Listings extends Component {
     this.applyFilter = this.applyFilter.bind(this);
   }
 
+  formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+    try {
+      decimalCount = Math.abs(decimalCount);
+      decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+  
+      const negativeSign = amount < 0 ? "-" : "";
+  
+      let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+      let j = (i.length > 3) ? i.length % 3 : 0;
+  
+      return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
   onMouseLeaveHandle = (e) => {
     if (this.state.target === "") return;
     let target = this.state.target;
@@ -116,7 +132,7 @@ class Listings extends Component {
     }
 
     if (filters.bedrooms !== "") {
-      const filter = {"fields.bedrooms": filters.bedrooms}
+      const filter = {"fields.bedrooms[lte]": filters.bedrooms, "fields.propertyBedroomsMax[gte]": filters.bedrooms}
       compiledFilters = {...compiledFilters, ...filter};
     }
 
@@ -167,12 +183,12 @@ class Listings extends Component {
   }
 
   render() {
-    const {pageTitle, showFilter, windowedBanner } = this.state.component
+    const {pageTitle, showFilter, windowedBanner, bedroomFilter, locationFilters, propertyTypeFilter} = this.state.component
 
     return (
       <div>
 
-        <FilterBar applyFilter={this.applyFilter} pageTitle={pageTitle} showFilter={showFilter} windowedBanner={windowedBanner}></FilterBar>
+        <FilterBar applyFilter={this.applyFilter} pageTitle={pageTitle} showFilter={showFilter} windowedBanner={windowedBanner} bedroomFilter={bedroomFilter} locationFilters={locationFilters} propertyTypeFilter={propertyTypeFilter}></FilterBar>
 
         <div className="view-config">
           <div className="results">
@@ -193,8 +209,15 @@ class Listings extends Component {
 
         <div className={this.state.cardSize ? "properties-list large" : "properties-list"}>
           {this.state.properties.map(property => {
-            const {name, location, price, bedrooms, bathroom, propertySizeSqm, photos, propertyHandle} = property.fields;
+            const {name, location, photos, propertyHandle, propertyCurrency} = property.fields;
+            let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax} = property.fields;
             const propertyLink = `/property/${propertyHandle}`;
+
+            if(propertyBedroomsMax && bedrooms !== propertyBedroomsMax) bedrooms += " - " + propertyBedroomsMax;
+            if(propertyBathroomMax) bathroom += " - " + propertyBathroomMax;
+            if(propertySizeSqftMax) propertySizeSqm += " - " + propertySizeSqftMax;
+            if(price) price = this.formatMoney(price);
+            
             return (
                 <div className="listing-card">
                   <div className="content">
@@ -225,7 +248,7 @@ class Listings extends Component {
                       <h3 className="subtitle">{location}</h3>
                       <h2 className="title">{name}</h2>
                       <p className="price">{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</p>
-                      <p className="price">£{price}</p>
+                      <p className="price">{propertyCurrency}{price}</p>
                       </Link>
                     </div>
                   </div>

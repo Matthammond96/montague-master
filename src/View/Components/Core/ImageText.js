@@ -23,7 +23,6 @@ class ImageText extends Component {
     const options = {root: null, rootMargin: "0px", threshold: [0.1, 0.5, 1.0]}
 
     const observer = new IntersectionObserver(([entry]) => {
-      console.log(entry);
       if (entry.intersectionRatio > 0.2 && !this.state.visible) {
         this.setState({
           visible: true

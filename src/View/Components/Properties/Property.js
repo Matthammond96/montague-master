@@ -47,11 +47,32 @@ class Property extends Component {
    
   }
 
+  formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
+    try {
+      decimalCount = Math.abs(decimalCount);
+      decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+  
+      const negativeSign = amount < 0 ? "-" : "";
+  
+      let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+      let j = (i.length > 3) ? i.length % 3 : 0;
+  
+      return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
   getProperty() {
     client
     .getEntries({content_type: "properties", "fields.propertyHandle[match]": this.state.id})
     .then(async entry => {
-      await this.setState({property: entry.items[0].fields})
+      let property = entry.items[0].fields
+      if(property.propertyBedroomsMax && property.bedrooms !== property.propertyBedroomsMax) property.bedrooms += " - " + property.propertyBedroomsMax;
+      if(property.propertyBathroomMax) property.bathroom += " - " + property.propertyBathroomMax;
+      if(property.propertySizeSqftMax) property.propertySizeSqm += " - " + property.propertySizeSqftMax;
+      if(property.price) property.price = this.formatMoney(property.price);
+      await this.setState({property: property})
       this.getComponents();
     })
     .catch(err => console.log(err));
@@ -141,7 +162,7 @@ class Property extends Component {
               <div className="property-info grid">
                 <div className="grid-item description">
                   <h2>{this.state.property.name}</h2>
-                  <p className="price">{this.state.property.bedrooms} Beds |  {this.state.property.bathroom} Baths | {this.state.property.propertySizeSqm} Sqft</p>
+                  <p className="price">{this.state.property.bedrooms} Beds |  {this.state.property.bathroom} Baths | {this.state.property.propertySizeSqm} Sqft | {this.state.property.propertyCurrency}{this.state.property.price}</p>
                   <p>{this.state.property.description}</p>
                 </div>  
               </div>

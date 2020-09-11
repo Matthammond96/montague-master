@@ -18,7 +18,7 @@ class FeaturedProperties extends Component {
 
   fetchProperties = async () => {
     client
-      .getEntries({"content_type": "properties", "sys.id[in]": "4yra9MUSB2xKx423wpPxTZ,7BD5iHENDYc82e3gqfVwon,7KJfvzvdYhFJuXXhG4iedX", "select": ["fields.name", "fields.location", "fields.description", "fields.photos", "fields.bedrooms", "fields.bathroom", "fields.propertySizeSqm"]})
+      .getEntries({"content_type": "properties", "sys.id[in]": "4yra9MUSB2xKx423wpPxTZ,7BD5iHENDYc82e3gqfVwon,7KJfvzvdYhFJuXXhG4iedX", "select": ["fields.name", "fields.location", "fields.description", "fields.photos", "fields.bedrooms", "fields.bathroom", "fields.propertySizeSqm", "fields.propertyBedroomsMax", "fields.propertyBathroomMax", "fields.propertySizeSqftMax"]})
       .then(async entry => this.setState({fetched_properties: entry.items}))
       .catch(err => console.log(err));
   }
@@ -37,7 +37,6 @@ class FeaturedProperties extends Component {
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.intersectionRatio > 0.1 && !this.state.visible) {
-        console.log("a");
         this.setState({
           visible: true
         });
@@ -59,12 +58,18 @@ class FeaturedProperties extends Component {
 
         <div className="properties">
           {this.state.fetched_properties.map(property => {
-            const {name, photos, bedrooms, bathroom, propertySizeSqm} = property.fields;
-            const {id} = property.sys;
+             const {name, photos, propertyHandle} = property.fields;
+             let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax} = property.fields;
+             const propertyLink = `/property/${propertyHandle}`;
+ 
+             if(propertyBedroomsMax && bedrooms !== propertyBedroomsMax) bedrooms += " - " + propertyBedroomsMax;
+             if(propertyBathroomMax) bathroom += " - " + propertyBathroomMax;
+             if(propertySizeSqftMax) propertySizeSqm += " - " + propertySizeSqftMax;
+             if(price) price = this.formatMoney(price);
 
            return (
                 <div className={`item ${this.state.visible && " visible"}`}>
-                  <Link to={`/property/${id}`}>
+                  <Link to={propertyLink}>
                   <img alt={photos[0].fields.file.title} src={photos[0].fields.file.url}></img>
                   <h2>{name}</h2>
                   <h3>{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</h3>

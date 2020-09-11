@@ -7,11 +7,15 @@ class FilterBar extends Component {
 
     this.state = {
       component: props.component,
+      bedroomFilter: props.bedroomFilter,
+      locationFilters: props.locationFilters,
+      propertyTypeFilter: props.propertyTypeFilter,
       filters: {
         location: "",
         property_type: "",
         bedrooms: "",
-        price: ""
+        price: "",
+        onPlan: ""
       }
     };
   }
@@ -29,35 +33,20 @@ class FilterBar extends Component {
   }
 
   render() {
-    const destinations_options = [
-      { value: '', label: 'All Destinations' },
-      { value: 'frech riviera', label: 'French Riviera' },
-      { value: 'Dubai, United Arab Emirates', label: 'Dubai' },
-      { value: 'berlin', label: 'Berlin' },
-      { value: 'cyprus', label: 'Cyprus' },
-      { value: 'Cape Town, South Africa', label: 'Cape Town' }
-    ]
+    const destinations_options = [{value: "", label: "All Destinations"}] 
+    this.state.locationFilters.map(filter => {
+      destinations_options.push({value: filter, label: filter})
+    });
 
-    const bedroom_options = [
-      { value: '', label: 'All' },
-      { value: '1', label: '1' },
-      { value: '2', label: '2' },
-      { value: '3', label: '3' },
-      { value: '4', label: '4' },
-      { value: '5', label: '5' },
-      { value: '6', label: '6' },
-      { value: '7', label: '7' },
-      { value: '8+', label: '8+' }
-    ]
+    const property_options = [{value: "", label: "All Properties"}]
+    this.state.propertyTypeFilter.map(filter => {
+      property_options.push({value: filter, label: filter})
+    });
 
-    const property_options = [
-      { value: '', label: 'All Properties' },
-      { value: 'Apartment', label: 'Apertment' },
-      { value: 'commercial', label: 'Commercial Properties' },
-      { value: 'house', label: 'House' },
-      { value: 'new development', label: 'New Development' },
-      { value: 'Villa', label: 'Villa' }
-    ]
+    const bedroom_options = [{value: "", label: "All"}]
+    this.state.bedroomFilter.map(filter => {
+      bedroom_options.push({value: filter, label: filter})
+    });
 
     const {pageTitle, showFilter, windowedBanner } = this.props
     return (
