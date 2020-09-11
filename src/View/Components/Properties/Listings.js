@@ -88,7 +88,7 @@ class Listings extends Component {
   }
 
   applyFilter(filters, e) {
-    // e.preventDefault();
+    if (e) e.preventDefault();
     let compiledFilters = {"content_type": "properties"};
 
     if (filters.location !== "") {
@@ -102,7 +102,7 @@ class Listings extends Component {
     }
 
     if (filters.onPlan !== "") {
-      const filter = {"fields.onPlan": filters.onPlan}
+      const filter = {"fields.onPlan": filters.onPlan.toString()}
       compiledFilters = {...compiledFilters, ...filter};
     }
 
@@ -110,8 +110,6 @@ class Listings extends Component {
       const filter = {"fields.bedrooms": filters.bedrooms}
       compiledFilters = {...compiledFilters, ...filter};
     }
-
-    console.log("a");
 
     client
     .getEntries(compiledFilters)
@@ -124,7 +122,6 @@ class Listings extends Component {
       client
       .getEntries({"content_type": "urlFilter", "fields.handle": this.state.id})
       .then(entry => {
-        console.log(entry);
         if (entry.items.length > 0) {
           const filters =  {
             location: "",
@@ -133,7 +130,7 @@ class Listings extends Component {
           }
 
           if (entry.items[0].fields.locationFilter) filters.location = entry.items[0].fields.locationFilter;
-          if (entry.items[0].fields.planStatus) filters.onPlan = entry.items[0].fields.planStatus;
+          if (entry.items[0].fields.planStatus === false || entry.items[0].fields.planStatus === true) filters.onPlan = entry.items[0].fields.planStatus;
           if (entry.items[0].fields.propertyTypeFilter) filters.property_type = entry.items[0].fields.propertyTypeFilter;
 
           this.applyFilter(filters);
