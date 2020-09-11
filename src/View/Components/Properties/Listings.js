@@ -81,9 +81,18 @@ class Listings extends Component {
     }
   }
 
-  componentDidUpdate() {
+  async componentDidUpdate() {
     if (this.state.component !== this.props.component) {
-      this.setState({component: this.props.component});
+      await this.setState({component: this.props.component});
+      
+    }
+
+    const id = window.location.pathname.replace("/properties/", "");
+    if (this.state.id !== id) {
+      await this.setState({
+        id: id
+      });
+      this.fetchProperties();
     }
   }
 
