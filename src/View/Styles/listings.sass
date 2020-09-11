@@ -158,6 +158,14 @@ h1, h2, h3, h4, h5, h6, p, span
   .listing-card
     flex: 1 1 100%
 
+    .content
+      display: flex
+      align-items: center
+      a
+        flex: 1
+      .details
+        flex-basis: 300px
+
 
 @media (max-width: 950px)
   .listing-card
@@ -256,6 +264,9 @@ h1, h2, h3, h4, h5, h6, p, span
     opacity: 1
 
 @media (max-width: 600px)
+  .thumbnails
+    display: none
+
   .view-config
     .grids
       display: none
