@@ -23,7 +23,7 @@ class ProductGallery extends Component {
     return (
       <section id={title.replace(" ", "-")} >
         <div className="page-container">
-          <h2 className="section-title"><span className="line">{title}</span></h2>
+          <h2 className="section-title orchide"><span className="line">{title}</span></h2>
           <p>{paragraph}</p>
         </div>
         <Responsive displayIn={["Laptop"]}>

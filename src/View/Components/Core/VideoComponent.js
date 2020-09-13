@@ -22,7 +22,7 @@ class VideoComponent extends Component {
 
     return (
       <section id={title && title.replace(" ", "-")} className={wide ? "video-comtainer" : "page-container video-container"}>
-        <h2 className="section-title"><span className="line">{title}</span></h2>
+        <h2 className="section-title orchide"><span className="line">{title}</span></h2>
         <p>{paragraph}</p>
         <div className="video-component">
           <ReactPlayer controls ref={this.ref} url={videoFile.fields.file.url} width="100%" height="100%"  playing playIcon={<div className="play-button"></div>} light={videoThumbnail.fields.file.url}></ReactPlayer>
