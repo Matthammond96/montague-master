@@ -30,7 +30,7 @@ class Newsletter extends Component {
     const {first_name, last_name, email} = this.state;
     return (
       <div className="footer-item newsletter-form">
-        <p>Newsletter Sign-up</p>
+        <p>Stay In Touch</p>
 
         <form>
           <div className="form-group grid">

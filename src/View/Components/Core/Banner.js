@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Banner extends Component {
   constructor(props) {                      
@@ -22,10 +23,10 @@ class Banner extends Component {
       <div className="banner-image">
         <div className="content-overlay">
           <div className="content">
-            <h3 className="orchide">{subTitle}</h3>
             <h1>{title}</h1>
+            <h3 className="orchide">{subTitle}</h3>
             {buttonLink ? (
-              <button class="btn">{buttonTitle}</button>
+              <Link to={buttonLink} class="btn">{buttonTitle}</Link>
             ): null}
           </div>
         </div>

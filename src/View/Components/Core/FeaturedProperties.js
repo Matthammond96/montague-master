@@ -79,8 +79,10 @@ class FeaturedProperties extends Component {
               )
           })}          
         </div>
-
-        <Link className="btn" to={buttonUrl}>{buttonTitle}</Link>
+        {buttonTitle && (
+          <Link className="btn" to={buttonUrl}>{buttonTitle}</Link>
+        )}
+        
       </div>
     )
   }

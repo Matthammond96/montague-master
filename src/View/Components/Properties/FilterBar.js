@@ -66,8 +66,8 @@ class FilterBar extends Component {
             {showFilter ? (
               <div className="listing-form-container">
                 <form className="listing-form">
-                  <Select onChange={this.onChangeHandler("location")} className="input-select-form destinations" name="Destinations" placeholder="Destinations" value={this.state.locationFilterDefault !== "" &&  {value: this.state.filters.location, label: this.state.filters.location}} options={destinations_options} />
-                  <Select onChange={this.onChangeHandler("property_type")} className="input-select-form property" name="Property type" placeholder="Property type" value={this.state.typeFilterDefault !== "" && {value: this.state.filters.property_type, label: this.state.filters.property_type}} options={property_options} />
+                  <Select onChange={this.onChangeHandler("location")} className="input-select-form destinations" name="Destinations" placeholder="Destinations" options={destinations_options} />
+                  <Select onChange={this.onChangeHandler("property_type")} className="input-select-form property" name="Property type" placeholder="Property type" options={property_options} />
                   <Select onChange={this.onChangeHandler("bedrooms")} className="input-select-form bedrooms" name="Bedrooms" placeholder="Bedrooms" options={bedroom_options} />
                   {/* <Select onChange={this.onChangeHandler("price")} className="input-select-form price" placeholder="Price Range" options="" /> */}
                   <button onClick={(e) => this.props.applyFilter(this.state.filters, e)} className="btn">Search</button>

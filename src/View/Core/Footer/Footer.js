@@ -57,6 +57,7 @@ class Footer extends Component {
   render() {
     return (    
       <div className="footer">
+        <div className="seperator"></div>
         {/* <div className="footer-logo">
           <img alt="montage properties" src="/logo.png"></img>
         </div> */}
