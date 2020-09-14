@@ -59,13 +59,14 @@ class FeaturedProperties extends Component {
         <div className="properties">
           {this.state.fetched_properties.map(property => {
              const {name, photos, propertyHandle} = property.fields;
-             let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax} = property.fields;
+             let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax, propertyMaxPrice} = property.fields;
              const propertyLink = `/property/${propertyHandle}`;
  
              if(propertyBedroomsMax && bedrooms !== propertyBedroomsMax) bedrooms += " - " + propertyBedroomsMax;
              if(propertyBathroomMax) bathroom += " - " + propertyBathroomMax;
              if(propertySizeSqftMax) propertySizeSqm += " - " + propertySizeSqftMax;
              if(price) price = this.formatMoney(price);
+             if(propertyMaxPrice) price += " - " + this.formatMoney(propertyMaxPrice);
 
            return (
                 <div className={`item ${this.state.visible && " visible"}`}>

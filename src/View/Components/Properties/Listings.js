@@ -222,13 +222,14 @@ class Listings extends Component {
         <div className={this.state.cardSize ? "properties-list large" : "properties-list"}>
           {this.state.properties.map(property => {
             const {name, location, photos, propertyHandle, propertyCurrency} = property.fields;
-            let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax} = property.fields;
+            let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax, propertyMaxPrice} = property.fields;
             const propertyLink = `/property/${propertyHandle}`;
 
             if(propertyBedroomsMax && bedrooms !== propertyBedroomsMax) bedrooms += " - " + propertyBedroomsMax;
             if(propertyBathroomMax) bathroom += " - " + propertyBathroomMax;
             if(propertySizeSqftMax) propertySizeSqm += " - " + propertySizeSqftMax;
             if(price) price = this.formatMoney(price);
+            if(propertyMaxPrice) price += " - " + this.formatMoney(propertyMaxPrice);
             
             return (
                 <div className="listing-card">

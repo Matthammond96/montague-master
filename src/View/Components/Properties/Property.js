@@ -72,6 +72,7 @@ class Property extends Component {
       if(property.propertyBathroomMax) property.bathroom += " - " + property.propertyBathroomMax;
       if(property.propertySizeSqftMax) property.propertySizeSqm += " - " + property.propertySizeSqftMax;
       if(property.price) property.price = this.formatMoney(property.price);
+      if(property.propertyMaxPrice) property.price += " - " + this.formatMoney(property.propertyMaxPrice);
       await this.setState({property: property})
       this.getComponents();
     })
