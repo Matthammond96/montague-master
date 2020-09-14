@@ -73,19 +73,6 @@ class ContactForm extends Component {
     }, 5000);
   }
 
-  onChangeHandler() {
-  }
-
-
-  onClick(e) {
-    e.preventDefault();
-
-    const ex = document.getElementById("ex");
-
-    ex.click()
-    // this.sendEmail(ex);
-  }
-
   render() {
     
     return (
