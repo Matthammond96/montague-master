@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import emailjs from 'emailjs-com';
+import validator from 'validator';
 
 class ContactForm extends Component {
   constructor(props) {                      
@@ -27,10 +28,15 @@ class ContactForm extends Component {
     })
   }
 
+  validatePhoneNumber = (number) => {
+    const isValidPhoneNumber = validator.isMobilePhone(number)
+    return (isValidPhoneNumber)
+   }
+
   sendEmail(e) {
     e.preventDefault();
     if (this.state.name === "") return this.setState({error: true});
-    if (this.state.phone === "") return this.setState({error: true});
+    if (this.state.phone === "" || this.validatePhoneNumber(this.state.phone) === false) return this.setState({error: true});
     if (this.state.email === "") return this.setState({error: true});
     if (this.state.message === "") return this.setState({error: true});
 
@@ -49,9 +55,15 @@ class ContactForm extends Component {
   }
 
   componentDidUpdate() {
+    console.log(this.validatePhoneNumber("gym"))
+
     if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
     }
+  }
+
+  componentDidMount() {
+
   }
 
   render() {

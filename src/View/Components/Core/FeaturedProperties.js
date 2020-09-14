@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { client } from '../../../ContentfulContext';
 import { Link } from 'react-router-dom';
+import TextTruncate from 'react-text-truncate';
 
 class FeaturedProperties extends Component {
   constructor(props) {                      
@@ -59,7 +60,7 @@ class FeaturedProperties extends Component {
         <div className="properties">
           {this.state.fetched_properties.map(property => {
              const {name, photos, propertyHandle} = property.fields;
-             let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax, propertyMaxPrice} = property.fields;
+             let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax, propertyMaxPrice, description} = property.fields;
              const propertyLink = `/property/${propertyHandle}`;
  
              if(propertyBedroomsMax && bedrooms !== propertyBedroomsMax) bedrooms += " - " + propertyBedroomsMax;
@@ -71,10 +72,12 @@ class FeaturedProperties extends Component {
            return (
                 <div className={`item ${this.state.visible && " visible"}`}>
                   <Link to={propertyLink}>
-                  <img alt={photos[0].fields.file.title} src={photos[0].fields.file.url}></img>
-                  <h2>{name}</h2>
-                  <h3>{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</h3>
-                  <p>A minimalist masterpiece - this townhouse in the West Village is truly something very special.</p>
+                    <img alt={photos[0].fields.file.title} src={photos[0].fields.file.url}></img>
+                    <h2>{name}</h2>
+                    <h3>{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</h3>
+                    <p>
+                      <TextTruncate line={2} element="span" truncateText="…" text={description}/>
+                    </p>
                   </Link>
               </div>
               )

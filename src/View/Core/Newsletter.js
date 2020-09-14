@@ -35,22 +35,19 @@ class Newsletter extends Component {
         <form>
           <div className="form-group grid">
             <div className="grid-item-1">
-              <label>Email Address</label>
-              <input type="text" name="email" onClick={this.onClickHandler} onChange={this.onChangeHandler("email")} placeholder="" value={email}></input>
+              <input type="text" name="email" onClick={this.onClickHandler} onChange={this.onChangeHandler("email")} placeholder="Email Address" value={email}></input>
             </div>
           </div>
           <div className={this.state.show_fields ? "hide-fields active" : "hide-fields"}>
             <div className="form-group grid">
               <div className="grid-item-1">
-                <label>First Name</label>
-                <input type="text" name="first_name" onChange={this.onChangeHandler("first_name")} placeholder="" value={first_name}></input>
+                <input type="text" name="first_name" onChange={this.onChangeHandler("first_name")} placeholder="First Name" value={first_name}></input>
               </div>
             </div>
 
             <div className="form-group grid">
               <div className="grid-item-1">
-                <label>Surname Name</label>
-                <input type="text" name="last_name" onChange={this.onChangeHandler("last_name")} placeholder="" value={last_name}></input>
+                <input type="text" name="last_name" onChange={this.onChangeHandler("last_name")} placeholder="Surname Name" value={last_name}></input>
               </div>
             </div>
           </div>

@@ -136,11 +136,9 @@ label {
 
 .orchide {
   font-family: "Orchide" !important;
-  font-size: 3rem !important;
-  text-transform: lowercase;
+  font-size: 4rem !important;
 }
 
 .orchide span {
   font-family: "Orchide" !important;
-  text-transform: lowercase !important;
 }
