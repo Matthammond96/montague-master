@@ -109,7 +109,7 @@ class Property extends Component {
                     <div className="content">
                       <h3>{this.state.property.location}</h3>
                       <h1>{this.state.property.name}</h1>
-                      <button class="btn">Enquire Now</button>
+                      {/* <button class="btn">Enquire Now</button> */}
                     </div>
                   </div>
                 <img alt={this.state.property.photos[0].fields.file.title} src={this.state.property.photos[0].fields.file.url}></img>
@@ -127,7 +127,7 @@ class Property extends Component {
                             <div className="content">
                               <h3>{this.state.property.location}</h3>
                               <h1>{this.state.property.name}</h1>
-                              <button class="btn">Enquire Now</button>
+                              {/* <button class="btn">Enquire Now</button> */}
                             </div>
                           </div>
                           <img alt={photo.fields.file.title} src={photo.fields.file.url}></img>

@@ -23,7 +23,7 @@ export const PropertyNavigation = props => {
 
   const scrollWithOffset = (el) => {
     const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-    const yOffset = -150; 
+    const yOffset = -125; 
     window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
   }
 

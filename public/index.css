@@ -3,9 +3,13 @@
   src: url("Orchide.otf");
 }
 
+
+
 body {
   margin: 0;
-  font-family: "Montserrat",sans-serif;
+  font-family: muli,sans-serif;
+  font-weight: 300;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000;
@@ -24,6 +28,7 @@ p, label {
   font-weight: 300;
   letter-spacing: 0px;
   line-height: 1.5rem;
+  font-family: muli,sans-serif;
 }
 
 a {
@@ -43,7 +48,7 @@ a {
 
 .btn {
   letter-spacing: .22rem;
-  font-family: "Montserrat",sans-serif;
+  font-family: muli,sans-serif;
   font-weight: 500;
   font-size: 0.6rem;
   background-color: #333;
@@ -71,7 +76,7 @@ label {
   margin-top: 10px;
   line-height: 0.8rem;
   font-weight: 300 !important;
-  font-family: "Montserrat",sans-serif;
+  font-family: muli,sans-serif;
 }
 
 .section-title {

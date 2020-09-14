@@ -56,7 +56,7 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <section id="contact-us" className={this.state.viewing ? "contact-us viewing" : "contact-us"}>
+      <section id="contact-us" className={this.state.viewing ? "contact-us viewing page-container" : "contact-us page-container"}>
         {this.state.viewing && (
           <div className="titlePara-component">
             <h2 className="section-title orchide"><span className="line">Schedule A Viewing</span></h2>

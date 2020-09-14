@@ -25,7 +25,7 @@ class HighLight extends Component {
     return (
       <div class="product-highlight">
         {this.state.loaded && (
-          <p>{this.state.component.fields.fieldTitle} <span>{this.state.component.fields.fieldContent}</span></p>
+          <p><strong>{this.state.component.fields.fieldTitle}</strong> <span>{this.state.component.fields.fieldContent}</span></p>
         )}
       </div>
     )

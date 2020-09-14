@@ -31,6 +31,7 @@
   width: 95%
   max-width: 1550px
   z-index: 1
+  transition: padding 0.5s;
 
   .social-icons
     flex: 1
@@ -44,10 +45,17 @@
     text-align: center
     img
       height: 60px
+      transition: height 0.5s;
 
   .burger
     flex: 1
     position: relative
+
+  &.small
+    .logo
+      img
+        height: 40px
+        
 
 #nav-icon3
   width: 20px
@@ -139,7 +147,7 @@
       p
         font-size: 12px
         font-weight: 400
-        font-family: "Montserrat",sans-serif
+        font-family: muli,sans-serif;
         margin-top: 0
         margin-bottom: 0
 
@@ -164,7 +172,7 @@
       margin-right: 10px
 
     p
-      font-family: "Montserrat",sans-serif
+      font-family: muli,sans-serif;
       font-size: 16px !important
       font-weight: 500 !important
       letter-spacing: 2px
@@ -262,7 +270,7 @@
           margin-top: 10px
           line-height: 0.8rem
           font-weight: 300 !important
-          font-family: "Montserrat",sans-serif !important
+          font-family: muli,sans-serif;
   
   .copyright
     font-size: 10px
