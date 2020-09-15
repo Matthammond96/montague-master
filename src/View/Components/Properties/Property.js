@@ -71,8 +71,8 @@ class Property extends Component {
       if(property.propertyBedroomsMax && property.bedrooms !== property.propertyBedroomsMax) property.bedrooms += " - " + property.propertyBedroomsMax;
       if(property.propertyBathroomMax) property.bathroom += " - " + property.propertyBathroomMax;
       if(property.propertySizeSqftMax) property.propertySizeSqm += " - " + property.propertySizeSqftMax;
-      if(property.price) property.price = this.formatMoney(property.price);
-      if(property.propertyMaxPrice) property.price += " - " + this.formatMoney(property.propertyMaxPrice);
+      if(property.price) property.price = property.propertyCurrency + this.formatMoney(property.price);
+      if(property.startingFrom) property.price = "From " + property.price;
       await this.setState({property: property})
       this.getComponents();
     })
@@ -163,7 +163,7 @@ class Property extends Component {
               <div className="property-info grid">
                 <div className="grid-item description">
                   <h2>{this.state.property.name}</h2>
-                  <p className="price">{this.state.property.bedrooms} Beds |  {this.state.property.bathroom} Baths | {this.state.property.propertySizeSqm} Sqft | {this.state.property.propertyCurrency}{this.state.property.price}</p>
+                  <p className="price">{this.state.property.bedrooms} Beds |  {this.state.property.bathroom} Baths | {this.state.property.propertySizeSqm} Sqft | {this.state.property.price}</p>
                   <p>{this.state.property.description}</p>
                 </div>  
               </div>

@@ -200,7 +200,7 @@ class Listings extends Component {
     return (
       <div>
 
-        <FilterBar typeFilterDefault={this.state.typeFilterDefault} locationFilterDefault={this.state.locationFilterDefault} applyFilter={this.applyFilter} pageTitle={pageTitle} showFilter={showFilter} windowedBanner={windowedBanner} bedroomFilter={bedroomFilter} locationFilters={locationFilters} propertyTypeFilter={propertyTypeFilter}></FilterBar>
+        <FilterBar bannerImage={this.state.component.bannerImage.fields.file.url} typeFilterDefault={this.state.typeFilterDefault} locationFilterDefault={this.state.locationFilterDefault} applyFilter={this.applyFilter} pageTitle={pageTitle} showFilter={showFilter} windowedBanner={windowedBanner} bedroomFilter={bedroomFilter} locationFilters={locationFilters} propertyTypeFilter={propertyTypeFilter}></FilterBar>
 
         <div className="view-config">
           <div className="results">
@@ -222,14 +222,14 @@ class Listings extends Component {
         <div className={this.state.cardSize ? "properties-list large" : "properties-list"}>
           {this.state.properties.map(property => {
             const {name, location, photos, propertyHandle, propertyCurrency} = property.fields;
-            let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax, propertyMaxPrice} = property.fields;
+            let {price, bedrooms, bathroom, propertySizeSqm, propertyBedroomsMax, propertyBathroomMax, propertySizeSqftMax, startingFrom} = property.fields;
             const propertyLink = `/property/${propertyHandle}`;
 
             if(propertyBedroomsMax && bedrooms !== propertyBedroomsMax) bedrooms += " - " + propertyBedroomsMax;
             if(propertyBathroomMax) bathroom += " - " + propertyBathroomMax;
             if(propertySizeSqftMax) propertySizeSqm += " - " + propertySizeSqftMax;
-            if(price) price = this.formatMoney(price);
-            if(propertyMaxPrice) price += " - " + this.formatMoney(propertyMaxPrice);
+            if(price) price = propertyCurrency + this.formatMoney(price);
+            if(startingFrom) price = "From " + price;
             
             return (
                 <div className="listing-card">
@@ -261,7 +261,7 @@ class Listings extends Component {
                       <h3 className="subtitle">{location}</h3>
                       <h2 className="title">{name}</h2>
                       <p className="price">{bedrooms} Beds |  {bathroom} Baths | {propertySizeSqm} Sqft</p>
-                      <p className="price">{propertyCurrency}{price}</p>
+                      <p className="price">{price}</p>
                       </Link>
                     </div>
                   </div>

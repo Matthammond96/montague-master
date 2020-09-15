@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from "axios";
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 
 mailchimp.setConfig({
@@ -32,8 +33,10 @@ class Newsletter extends Component {
   }
 
   async callPing() {
-    const response = await mailchimp.ping.get();
-    console.log(response);
+    const response = await mailchimp.ping.get()
+    .then(result => console.log(result))
+    .catch(err => console.log(err));
+    // console.log(response);
   }
 
   componentDidMount() {
@@ -41,7 +44,6 @@ class Newsletter extends Component {
   }
 
   render() {
-    this.callPing();
     const {first_name, last_name, email} = this.state;
     return (
       <div className="footer-item newsletter-form">

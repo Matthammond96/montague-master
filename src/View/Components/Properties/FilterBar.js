@@ -11,6 +11,7 @@ class FilterBar extends Component {
       propertyTypeFilter: props.propertyTypeFilter,
       locationFilterDefault: props.locationFilterDefault,
       typeFilterDefault: props.typeFilterDefault,
+      bannerImage: props.bannerImage,
       filters: {
         location: "",
         property_type: "",
