@@ -8,11 +8,8 @@ export const FooterGroup = props => {
       <p>{title}</p>
       {links.map(link => {
         const { title, url } = link.fields;
-        return (
-          <Link className="" to={url}>
-            <p>{title}</p>
-          </Link>
-        )
+        if (url.includes("http")) return <a href={url}><p>{title}</p></a>
+        return <Link to={url}><p>{title}</p></Link>
       })}
     </div>
   )  
