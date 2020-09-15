@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { client } from './ContentfulContext';
 import Components from './View/Components/Components';
+import {Helmet} from "react-helmet";
 
 class ComponentLoader extends Component {
   constructor(props) {
@@ -8,10 +9,10 @@ class ComponentLoader extends Component {
 
     this.state = {
       id: props.id,
-      components: []
+      components: [],
+      title: this.props.title,
+      desc: this.props.desc
     }
-
-    document.title = this.props.title
   }
 
   fetchComponents() { 
@@ -40,6 +41,11 @@ class ComponentLoader extends Component {
   render() {
     return (
       <div className="component-loader">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{this.state.title}</title>
+          {this.state.desc && <meta name="description" content={this.state.desc} /> }          
+        </Helmet>
         {this.state.components.map(component => {
           const type = component.sys.contentType.sys.id;
           const ComponentToRender = Components[type];
