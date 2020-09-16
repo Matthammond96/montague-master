@@ -187,9 +187,8 @@ class Property extends Component {
                 })}
               </div>
             )}
-
-            </div>
             
+            </div>
             <ContactForm viewing={true}></ContactForm>
             {/* <VerticalSpacer component={{spacingHeightPx: "50"}}></VerticalSpacer> */}
           </div>

@@ -21,7 +21,7 @@ class VR extends Component {
       <section className="page-container">
         <h2 className="section-title orchide"><span className="line">{this.state.component.title}</span></h2>
         <div class="aspect-ratio">
-          <iframe id="frame_7" class="property-vr" src={this.state.component.url} autoplay="" allowfullscreen="" allow="vr"></iframe>
+          <iframe id="frame_7" class="property-vr" src={this.state.component.embedLinkUrl} autoplay="" allowfullscreen="" allow="vr"></iframe>
         </div>
       </section>
     )
