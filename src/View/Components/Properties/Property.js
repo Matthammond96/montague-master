@@ -5,6 +5,7 @@ import PropertyToggle from './PropertyToggle';
 import SubProperties from './SubProperties';
 import ProductGallery from '../Core/ProductGallery';
 import VideoComponent from '../Core/VideoComponent';
+import VR from './VR'
 import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 import "../../Styles/property.sass"
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
@@ -168,7 +169,7 @@ class Property extends Component {
                 </div>  
               </div>
             </div>
-            
+
             {this.state.property.components && (
               <div>
                 {this.state.property.components.map(component => {
@@ -180,13 +181,15 @@ class Property extends Component {
                       {contentType === "imageGallery" && <ProductGallery component={obj}></ProductGallery>}
                       {contentType === "videoBanner" && <VideoComponent component={obj.fields}></VideoComponent>}
                       {contentType === "subProperties" && <SubProperties component={obj.fields}></SubProperties>}
+                      {contentType === "propertyVrTour" && <VR component={obj.fields}></VR>}
                     </div>
                   )
                 })}
               </div>
             )}
-             
+
             </div>
+            
             <ContactForm viewing={true}></ContactForm>
             {/* <VerticalSpacer component={{spacingHeightPx: "50"}}></VerticalSpacer> */}
           </div>
