@@ -11,6 +11,7 @@ import "../../Styles/property.sass"
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import ContactForm from '../Core/ContactForm';
+import {Helmet} from "react-helmet";
 
 class Property extends Component {
   constructor(props) {
@@ -103,6 +104,9 @@ class Property extends Component {
       <div className="">
         {this.state.loaded ? (
           <div className="property">
+            <Helmet>
+              <title>{`${this.state.property.name} | ${this.state.property.location}`}</title>
+            </Helmet>
             <div className="property-image">
             {this.state.property.photos.length === 1 ? (
                 <div className="property-image-fixed">

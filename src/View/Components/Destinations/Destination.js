@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { client } from '../../../ContentfulContext';
 import Components from '../Components';
+import {Helmet} from "react-helmet";
 
 class Destination extends Component {
   constructor(props) {                      
@@ -18,7 +19,6 @@ class Destination extends Component {
     client
     .getEntries({content_type: "destinations", "fields.handle[match]": this.state.id})
     .then(async entry => {
-      console.log(entry);
       await this.setState({destination: entry.items[0].fields})
       this.getComponents();
     })
@@ -45,6 +45,9 @@ class Destination extends Component {
   render() {
     return (
       <section>
+        <Helmet>
+          <title>{`${this.state.destination.title} | Destination`}</title>
+        </Helmet>
          {this.state.destination.components && (
               <div>
                 {this.state.destination.components.map(component => {
