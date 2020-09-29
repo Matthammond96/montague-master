@@ -10,14 +10,18 @@ class Footer extends Component {
     this.footer = [];
 
     this.state = {
-      footer: false
+      footer: false,
+      footerLegal: ""
     }
   }
 
   fetchParentFooter() {
     client
     .getEntry("20kMJ5HVsxGRE4oP98AawR")
-    .then(entry => this.peprareFooter(entry.fields.footerLinkGroups))
+    .then(entry => {
+      this.setState({footerLegal: entry.fields.bottomLegalText});
+      this.peprareFooter(entry.fields.footerLinkGroups);
+    })
     .catch(err => console.log(err));
   }
 
@@ -69,7 +73,7 @@ class Footer extends Component {
           })}
           <Newsletter></Newsletter>
         </div>
-        <p className="copyright">Copyright © 2020 Montague Realestate Ltd All Rights Reserved</p>
+        <p className="copyright">{this.state.footerLegal}</p>
       </div>
     )
   }
