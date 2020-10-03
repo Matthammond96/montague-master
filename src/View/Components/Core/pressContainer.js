@@ -52,7 +52,6 @@ class PressContainer extends Component {
             )
           })}
         </div>
-        <div className="opacity"></div>
         </div>
       </section>
     )
