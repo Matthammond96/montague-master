@@ -43,7 +43,9 @@ class PressContainer extends Component {
             const {headline, publisher, date, articleImage} = article.fields;
             return (
               <div className="press-item">
-                <img src={articleImage.fields.file.url} alt={articleImage.fields.file.title}></img>
+                <div className="press-aspect">
+                  <img src={articleImage.fields.file.url} alt={articleImage.fields.file.title}></img>
+                </div>
                 <div className="press-misc">
                   <h2>{headline}</h2>
                   <p>@{publisher} {date}</p>
