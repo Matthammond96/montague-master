@@ -75,6 +75,12 @@ class ContactForm extends Component {
             <p>Your ideal property represents an expression of your personality. And so Montague Real Estates takes pride in offering a truly personalised service, on hand to guide you through every step.</p>
           </div>
         )}
+
+        {this.state.component.title && (
+          <div className="titlePara-component">
+            <h2 className="section-title"><span className="line">{this.state.component.title}</span></h2>
+          </div>
+        )}
         
 
         <div className="contact-container">

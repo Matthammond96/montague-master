@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { client } from './ContentfulContext';
 import ComponentLoader from './ComponentLoader';
@@ -30,7 +30,6 @@ class AppRouter extends Component {
     .then(entries => {
       let site_map = [];
       entries.items.map(entry => {
-        console.log(entry);
         return site_map.push({page: {"id": entry.sys.id, "title": entry.fields.title, "url": entry.fields.url, "navColour": entry.fields.whiteNavigation, "meta_description": entry.fields.meta_description}});
       })
       return this.setState({site_map: site_map, loaded: true})
@@ -65,7 +64,7 @@ class AppRouter extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
       {this.state.loaded && (
         <div className="page-load">
           <Nav colour={this.state.nav_colour} pathname={this.props.location.pathname}></Nav>
@@ -76,7 +75,7 @@ class AppRouter extends Component {
           ) : null}
         </div>
       )}
-      </div>
+      </Fragment>
     )
   }
 }

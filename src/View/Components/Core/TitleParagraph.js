@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom';
 
 class TitleParagraph extends Component {
   constructor(props) {
@@ -16,11 +17,23 @@ class TitleParagraph extends Component {
   }
 
   render() {
-    const {title, paragraph} = this.state.component;
+    const {title, paragraph, buttonTitle, buttonUrl} = this.state.component;
+    let https = false;
+    if (buttonUrl && buttonUrl.includes("http")) { https = true }
+
     return (
     <div className="titlePara-component">
      <h2 className="section-title orchide"><span className="line">{title}</span></h2>
      <p>{paragraph}</p>
+      {buttonTitle && (
+        <Fragment>
+          {https === true ? (
+            <a className="btn" href={buttonUrl}>{buttonTitle}</a>
+          ) : (
+            <Link className="btn" to={buttonUrl}>{buttonTitle}</Link>
+          )}
+        </Fragment>
+      )}
     </div>
     )
   }

@@ -11,6 +11,8 @@ Components['verticalSpacer'] = require('./Core/VerticalSpacer').default;
 Components['videoBanner'] = require('./Core/VideoComponent').default;
 Components['teams'] = require('./Core/Teams').default;
 Components['contactForm'] = require('./Core/ContactForm').default;
+Components['gridContainer'] = require('./Core/gridContainer').default;
+Components['pressContainer'] = require('./Core/pressContainer').default;
 
 // Property Listings
 Components['propertyListings'] = require('./Properties/Listings').default;
@@ -19,5 +21,8 @@ Components['property'] = require('./Properties/Property').default;
 // Destinations
 Components['destinationListings'] = require('./Destinations/Destination').default;
 Components['destination'] = require('./Destinations/Destination').default;
+
+// Services
+Components['ourServices'] = require("./Core/Services").default;
 
 export default Components

@@ -36,9 +36,9 @@ class ImageText extends Component {
   }
 
   render() {
-    const {title, paragraph, buttonTitle, buttonUrl, imageOnTheLeft, image} = this.state.component;
+    const {title, paragraph, buttonTitle, buttonUrl, imageOnTheLeft, ratio, image} = this.state.component;
     return (
-      <div ref={this.ref} className={`imageText-component page ${imageOnTheLeft && 'flip'} ${this.state.visible && 'visible'}`}>
+      <div ref={this.ref} className={`imageText-component page ${imageOnTheLeft && 'flip'} ${this.state.visible && 'visible '}${ratio && ' half'}`}>
         <div className="image">
           <img alt={image.fields.file.title} src={image.fields.file.url}></img>
         </div>

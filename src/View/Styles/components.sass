@@ -115,6 +115,9 @@
   h2
     margin-bottom: 0px
 
+  p
+    margin: 30px 0 
+
 // Banner & Text
 @keyframes slideInFromBottom
   0% 
@@ -210,6 +213,10 @@
 
 .imageText-component.flip
   flex-direction: row-reverse
+
+.imageText-component.half
+  .image
+    flex: 1
 
 // Featured Properties
 .featured-properties
@@ -554,3 +561,127 @@
 
   .page
     width: 90% !important
+
+// Our Services
+.our-services
+  width: 100%
+  max-width: 1200px
+  padding-bottom: 20px
+  .service-container
+    display: flex
+    flex-wrap: wrap
+    .service-item
+      flex-basis: calc(50% - 40px)
+      margin: 0 20px
+      margin-bottom: 60px
+      .service-misc
+        padding: 0 10px
+        text-align: center
+        h2
+          font-size: 1.2rem
+        p
+          margin-bottom: 30px
+    img
+      height: 400px
+      width: 100%
+      object-fit: cover
+      object-position: center
+@media (max-width: 900px)
+  .service-item
+    flex-basis: 100% !important
+
+// Grid Container
+.grid-container
+  width: 100%;
+  max-width: 1200px
+  padding-bottom: 20px
+  margin: 0 auto
+  .grid-flex
+    display: flex
+    flex-wrap: wrap
+    .grid-item
+      flex-basis: calc(33.33% - 120px)
+      text-align: center
+      margin: 0 20px 60px
+      background-color: #eee
+      padding: 40px
+      img
+        width: auto
+        height: 100px
+        margin: 0 auto
+        text-align: center
+        object-fit: cover
+        object-position: center
+@media (max-width: 1000px)
+  .grid-item
+    flex-basis: calc(50% - 120px) !important
+
+@media (max-width: 600px)
+  .grid-item
+    flex-basis: calc(100%) !important
+    margin-bottom: 20px !important
+
+// Press
+.press-container
+  margin-top: 50px
+  .press-flex
+    display: flex
+    position: relative
+
+    .press-header
+      flex-basis: 25%
+      text-align: left
+
+      .section-title
+        text-align: left
+        margin-bottom: 0px
+        padding-right: 20px
+      p
+        padding-right: 60px
+
+    .press-carosel
+      flex-basis: 75%
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch
+      overflow-scrolling: touch
+      scroll-snap-align: start
+      scroll-snap-type: x mandatory
+      scroll-behavior: smooth      
+
+      .press-item
+        flex: 0 0 auto;
+        flex-basis: calc(50% - 10px)
+        margin-right: 20px
+        scroll-snap-align: start
+        scroll-snap-type: x mandatory
+        scroll-behavior: smooth
+
+        h2
+          font-size: 12px
+          margin-bottom: 0px
+
+        p
+          font-size: 10px
+          margin-top: 0px
+        
+        img
+          width: 100%
+          height: 750px
+          object-fit: cover
+          object-position: center
+
+      &::-webkit-scrollbar
+        display: none
+      
+    .opacity
+      width: calc( 75% / 2 )
+      height: 800px
+      background-color: #fff
+      z-index: 1
+      position: absolute
+      flex: 0
+      opacity: 0.7 !important
+      right: 0
+      top: 0
