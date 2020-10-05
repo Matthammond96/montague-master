@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import CustomLink from './CustomLink';
 
 class Banner extends Component {
   constructor(props) {                      
@@ -26,7 +26,7 @@ class Banner extends Component {
             <h1>{title}</h1>
             <h3 className="orchide">{subTitle}</h3>
             {buttonLink ? (
-              <Link to={buttonLink} class="btn">{buttonTitle}</Link>
+              <CustomLink to={buttonLink} class="btn">{buttonTitle}</CustomLink>
             ): null}
           </div>
         </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import emailjs from 'emailjs-com';
-import { Link } from 'react-router-dom';
 
 class ContactForm extends Component {
   

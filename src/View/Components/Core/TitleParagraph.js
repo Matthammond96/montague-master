@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom';
+import CustomLink from './CustomLink';
 
 class TitleParagraph extends Component {
   constructor(props) {
@@ -26,13 +27,7 @@ class TitleParagraph extends Component {
      <h2 className="section-title orchide"><span className="line">{title}</span></h2>
      <p>{paragraph}</p>
       {buttonTitle && (
-        <Fragment>
-          {https === true ? (
-            <a className="btn" href={buttonUrl}>{buttonTitle}</a>
-          ) : (
-            <Link className="btn" to={buttonUrl}>{buttonTitle}</Link>
-          )}
-        </Fragment>
+        <CustomLink className="btn" to={buttonUrl}>{buttonTitle}</CustomLink>
       )}
     </div>
     )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import emailjs from 'emailjs-com';
 import validator from 'validator';
+import { client } from '../../../ContentfulContext';
 
 class ContactForm extends Component {
   constructor(props) {                      
@@ -15,10 +16,12 @@ class ContactForm extends Component {
       location: window.location.pathname,
       success: false,
       error: false,
-      viewing: props.viewing
+      viewing: props.viewing,
+      group: []
     };
 
     this.sendEmail = this.sendEmail.bind(this);
+    this.getFieldGroups = this.getFieldGroups.bind(this);
   }
 
   handleChange = name => event => {
@@ -54,16 +57,31 @@ class ContactForm extends Component {
       });
   }
 
-  componentDidUpdate() {
-    console.log(this.validatePhoneNumber("gym"))
+  async getFieldGroups() {
+    let id = "";
+    if (this.state.component.customFields) {
+      const promise = await this.state.component.customFields.map((group, key) => {
+        if (key === 0) return id = id + group.sys.id
+        return id = id + `,${group.sys.id}`
+      });
+      await Promise.all(promise);
+  
+      client
+      .getEntries({"sys.id[in]": id})
+      .then(entry => this.setState({group: entry.items}))
+      .catch(err => console.log(err));
+    }
+  }
 
+  componentDidUpdate() {
     if (this.state.component !== this.props.component) {
       this.setState({component: this.props.component});
+      this.getFieldGroups();
     }
   }
 
   componentDidMount() {
-
+    this.getFieldGroups();
   }
 
   render() {
@@ -110,9 +128,24 @@ class ContactForm extends Component {
               <div className="form-group">
                 <input type="email" name="email" onChange={this.handleChange("email")} placeholder="Email Address" value={this.state.email} required/>
               </div>
+              
+              {this.state.group && 
+                this.state.group.map(group => {
+                  console.log(group)
+                  return (
+                  <div className="form-group">
+                    {group.fields.formFields.map(field => {
+                      return <input type="text" name={field.fields.fieldName} onChange={this.handleChange(field.fields.fieldName)} placeholder={field.fields.fieldName} />
+                    })}
+                  </div>
+                  )
+                })
+                
+              }
+
               <div className="form-group last">
                 <textarea name="message" placeholder="Your Enquiry" onChange={this.handleChange("message")} value={this.state.message} required/>
-              </div>  
+              </div>
               <input type="submit" className="btn" value="Submit" />
             </form>
           </div>

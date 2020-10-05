@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { client } from '../../../ContentfulContext';
+import Slider from "react-slick";
+import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 
 class PressContainer extends Component {
   constructor(props) {                      
@@ -10,6 +11,9 @@ class PressContainer extends Component {
       component: props.component,
       press: []
     };
+
+    this.next = this.next.bind(this);
+    this.prev = this.prev.bind(this);
   }
 
   fetchPress() {
@@ -17,6 +21,13 @@ class PressContainer extends Component {
     .getEntries({"content_type": "press"})
     .then(entries => this.setState({press: entries.items}))
     .catch(err => console.log(err));
+  }
+
+  next() {
+    this.slider.slickNext();
+  }
+  prev() {
+    this.slider.slickPrev();
   }
 
   componentDidUpdate() {
@@ -31,6 +42,24 @@ class PressContainer extends Component {
   }
 
   render() {
+    var settings = {
+      focusOnSelect: true,
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToScroll: 1,
+      slidesToShow: 2,
+      row: 1,
+      responsive: [
+        {
+          breakpoint: 650,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
     return (
       <section className="press-container page">
         <div className="press-flex">
@@ -39,6 +68,7 @@ class PressContainer extends Component {
             <p>{this.state.component.paragraph}</p>
           </div>
           <div className="press-carosel">
+          <Slider ref={c => (this.slider = c)} {...settings}>
           {this.state.press.map(article => {
             const {headline, publisher, date, articleImage} = article.fields;
             return (
@@ -53,7 +83,13 @@ class PressContainer extends Component {
               </div>
             )
           })}
+          </Slider>
         </div>
+          <div className="arrow-wrapper">
+          <div className="arrow-container prev" onClick={this.prev}><ArrowLeft colour="#1c1c1c"></ArrowLeft></div>
+          <div className="arrow-container next" onClick={this.next}><ArrowRight colour="#1c1c1c"></ArrowRight></div>
+          </div>
+
         </div>
       </section>
     )

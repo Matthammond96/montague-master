@@ -640,8 +640,7 @@
         padding-right: 60px
 
     .press-carosel
-      flex-basis: 75%
-      display: flex;
+      flex-basis: 70%
       flex-wrap: nowrap;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch
@@ -649,10 +648,9 @@
       scroll-snap-align: start
       scroll-snap-type: x mandatory
       scroll-behavior: smooth      
+      margin: 0 auto
 
       .press-item
-        flex: 0 0 auto;
-        flex-basis: calc(50% - 10px)
         margin-right: 20px
         scroll-snap-align: start
         scroll-snap-type: x mandatory
@@ -681,17 +679,26 @@
 
       &::-webkit-scrollbar
         display: none
+    
+    .arrow-wrapper
+      position: absolute;
+      left: 25%;
+      width: 75%
+      display: flex
+      align-items: flex-start
+      .prev
+        flex: 1
+      .next
+        align-self: flex-end
       
-    .opacity
-      width: calc( 75% / 2 )
-      height: 800px
-      background-color: #fff
-      z-index: 1
-      position: absolute
-      flex: 0
-      opacity: 0.7 !important
-      right: 0
-      top: 0
+    .slick-slide
+      opacity: 0.6
+      transition: opacity 0.5s
+      &.slick-current
+        opacity: 1 !important
+    
+    div.slick-slide > div:first-child
+      padding: 10px
 
 @media (max-width: 900px)
   .press-flex
@@ -709,3 +716,15 @@
 @media (max-width: 650px)
   .press-item
     flex-basis: 100% !important
+
+  .arrow-wrapper
+    position: relative !important
+    display: none !important
+    margin: 0 auto;
+    left: 0 !important
+    width: 100% !important
+    .arrow-container
+      flex: 0 !important
+      margin: 0 20px;
+      svg
+        height: 20px

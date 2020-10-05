@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import CustomLink from './CustomLink';
 
 class ImageText extends Component {
   constructor(props) {                      
@@ -54,9 +54,9 @@ class ImageText extends Component {
               <p className="paragraph">{paragraph}</p>
             )}
             {buttonTitle && (
-            <Link to={buttonUrl} className="btn">
+            <CustomLink to={buttonUrl} className="btn">
               {buttonTitle}
-            </Link>
+            </CustomLink>
             )}
           </div>
         </div>
