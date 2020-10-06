@@ -26,11 +26,11 @@ class AppRouter extends Component {
 
   fetchPages() {
     client
-    .getEntries({"content_type": "page", "select": ["fields.title", "fields.url", "fields.whiteNavigation", "fields.meta_description"]})
+    .getEntries({"content_type": "page", "select": ["fields.title", "fields.url", "fields.whiteNavigation", "fields.meta_description", "fields.landingPage"]})
     .then(entries => {
       let site_map = [];
       entries.items.map(entry => {
-        return site_map.push({page: {"id": entry.sys.id, "title": entry.fields.title, "url": entry.fields.url, "navColour": entry.fields.whiteNavigation, "meta_description": entry.fields.meta_description}});
+        return site_map.push({page: {"id": entry.sys.id, "title": entry.fields.title, "url": entry.fields.url, "navColour": entry.fields.whiteNavigation, "meta_description": entry.fields.meta_description, "landingPage": entry.fields.landingPage}});
       })
       return this.setState({site_map: site_map, loaded: true})
     })
@@ -51,9 +51,9 @@ class AppRouter extends Component {
     return (
       <Switch>
         {this.state.site_map.map(page => {
-          const {id, title, url, navColour, meta_description} = page.page;
+          const {id, title, url, navColour, meta_description, landingPage} = page.page;
           return (
-            <Route exact path={url} render={props => <ComponentLoader title={title} desc={meta_description} id={id} nav_colour={navColour} navColour={this.updateNavColour}></ComponentLoader>}></Route>
+            <Route exact path={url} render={props => <ComponentLoader page={landingPage} title={title} desc={meta_description} id={id} nav_colour={navColour} navColour={this.updateNavColour}></ComponentLoader>}></Route>
           )
         })}
         <Route component={e404}></Route>

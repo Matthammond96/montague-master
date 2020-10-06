@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import emailjs from 'emailjs-com';
 import validator from 'validator';
 import { client } from '../../../ContentfulContext';
@@ -59,7 +59,7 @@ class ContactForm extends Component {
 
   async getFieldGroups() {
     let id = "";
-    if (this.state.component.customFields) {
+    if (this.state.component && this.state.component.customFields) {
       const promise = await this.state.component.customFields.map((group, key) => {
         if (key === 0) return id = id + group.sys.id
         return id = id + `,${group.sys.id}`
@@ -86,7 +86,8 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <section id="contact-us" className={this.state.viewing ? "contact-us viewing page-container" : "contact-us page-container"}>
+      <Fragment>
+      <section id="contact-us" className={this.state.component ? ( `${this.state.component.greyBackground ? "contact-us page-container greyBG" : "contact-us page-container"}`) : ( `${this.state.viewing ? "contact-us viewing page-container" : "contact-us page-container"}` ) }>
         {this.state.viewing && (
           <div className="titlePara-component">
             <h2 className="section-title orchide"><span className="line">Schedule A Viewing</span></h2>
@@ -94,19 +95,31 @@ class ContactForm extends Component {
           </div>
         )}
 
-        {this.state.component.title && (
-          <div className="titlePara-component">
-            <h2 className="section-title"><span className="line">{this.state.component.title}</span></h2>
-          </div>
+        {this.state.component && (
+          <Fragment>
+          {this.state.component.title && (
+            <div className="titlePara-component">
+              <h2 className="section-title"><span className="line">{this.state.component.title}</span></h2>
+            </div>
+          )}
+          </Fragment>
         )}
         
+        
 
+        
         <div className="contact-container">
-          <div className="information"> 
-            <p><strong>Contact Us</strong></p>
-            <p>sales@montaguerealestate.com</p>
-            <p>020 7118 1162</p>
-          </div>
+        {this.state.component && (
+          <Fragment>
+          {!this.state.component.hide && (
+            <div className="information"> 
+              <p><strong>Contact Us</strong></p>
+              <p>sales@montaguerealestate.com</p>
+              <p>020 7118 1162</p>
+            </div>
+          )}
+          </Fragment>
+        )}
 
 
 
@@ -128,10 +141,11 @@ class ContactForm extends Component {
               <div className="form-group">
                 <input type="email" name="email" onChange={this.handleChange("email")} placeholder="Email Address" value={this.state.email} required/>
               </div>
-              
-              {this.state.group && 
-                this.state.group.map(group => {
-                  console.log(group)
+              {this.state.component && (
+                <Fragment>
+                  {this.state.group && 
+                    this.state.group.map(group => {
+                  
                   return (
                   <div className="form-group">
                     {group.fields.formFields.map(field => {
@@ -142,6 +156,8 @@ class ContactForm extends Component {
                 })
                 
               }
+              </Fragment>
+              )}
 
               <div className="form-group last">
                 <textarea name="message" placeholder="Your Enquiry" onChange={this.handleChange("message")} value={this.state.message} required/>
@@ -151,6 +167,7 @@ class ContactForm extends Component {
           </div>
         </div>
       </section>
+      </Fragment>
     )
   }
 }

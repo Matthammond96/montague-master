@@ -11,7 +11,8 @@ class ComponentLoader extends Component {
       id: props.id,
       components: [],
       title: this.props.title,
-      desc: this.props.desc
+      desc: this.props.desc,
+      page: this.props.page
     }
   }
 
@@ -40,7 +41,7 @@ class ComponentLoader extends Component {
 
   render() {
     return (
-      <div className="component-loader">
+      <div className={`component-loader ${this.state.page && "landing"}`}>
         <Helmet>
           <meta charSet="utf-8" />
           <title>{this.state.title}</title>

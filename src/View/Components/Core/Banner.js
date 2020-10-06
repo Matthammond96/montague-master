@@ -17,16 +17,17 @@ class Banner extends Component {
   }
 
   render() {
-    const {title, subTitle, buttonTitle, buttonLink, image} = this.state.component;
+    const {title, subTitle, subSubTitle, buttonTitle, buttonLink, image, fullBleed, fonts, boltCta} = this.state.component;
     return (
-    <div className="banner-component">
+    <div className={`banner-component ${fullBleed && "fullBleed"}`}>
       <div className="banner-image">
         <div className="content-overlay">
           <div className="content">
             <h1>{title}</h1>
-            <h3 className="orchide">{subTitle}</h3>
+            <h3 className={`${fonts ?  "" : "orchide"}`}>{subTitle}</h3>
+            <h4>{subSubTitle}</h4>
             {buttonLink ? (
-              <CustomLink to={buttonLink} class="btn">{buttonTitle}</CustomLink>
+              <CustomLink to={buttonLink} class={`btn ${boltCta && "bold"}`}>{buttonTitle}</CustomLink>
             ): null}
           </div>
         </div>

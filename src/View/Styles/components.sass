@@ -10,6 +10,20 @@
   margin: 0 auto
   max-width: 1600px
 
+  &.fullBleed
+    max-width: 100000%
+    width: 100%
+    h1
+      font-size: 50px !important
+    h3
+      font-size: 45px !important
+    h4
+      font-size: 40px !important
+      margin-bottom: 50px !important
+
+    .banner-image
+      max-height: 10000px !important
+
   .banner-image
     width: 100%
     height: calc(95vh - 150px)
@@ -47,6 +61,10 @@
           margin-top: 15px
           padding: 0.6rem 0.8rem;
 
+          &.bold
+            background-color: #333 !important
+            font-size: 20px !important
+
         h1
           font-size: 38px;
           font-weight: 500;
@@ -54,10 +72,17 @@
           letter-spacing: 2px;
 
         h3
-          font-size: 16px;
+          font-size: 30px;
           font-weight: 500;
           letter-spacing: 2px;
           margin: 0
+
+        h4
+          font-size: 25px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          margin-top: 15px
+          margin-bottom: 30px
 
     img
       width: 100%;
@@ -389,6 +414,9 @@
   .button-form
     text-align: right
 
+.greyBG
+  background-color: #eee
+  margin-bottom: 60px
 // Product Gallery
 .product-gallery-component
   display: flex
