@@ -31,12 +31,14 @@ class ComponentLoader extends Component {
       await this.setState({id: this.props.id});
       document.title = this.props.title;
       this.props.navColour(this.props.nav_colour);
+      this.props.hideBurger(this.props.page);
       this.fetchComponents()
     }
   }
 
   componentDidMount() {
     this.fetchComponents();
+    this.props.hideBurger(this.props.page);
   }
 
   render() {

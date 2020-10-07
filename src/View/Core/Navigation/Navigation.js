@@ -14,7 +14,8 @@ class Navigation extends Component {
       nav_state: false,
       pathname: props.pathname,
       colour: props.colour,
-      nav_size: false
+      nav_size: false,
+      hideBurger: props.hideBurger
     }
   }
 
@@ -53,6 +54,10 @@ class Navigation extends Component {
   async componentDidUpdate() {
     if (this.state.colour !== this.props.colour) {
       await this.setState({colour: this.props.colour})
+    }
+
+    if (this.state.hideBurger !== this.props.hideBurger) {
+      await this.setState({hideBurger: this.props.hideBurger})
     }
   }
 
@@ -98,14 +103,18 @@ class Navigation extends Component {
               )}
             </Link>
           </div>
+        
           <div className="burger">
-            <div id="nav-icon3" onClick={this.onClickHanlder} className={this.state.nav_state ? "open" : null + this.state.colour ? "" : "black-burger"}>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            {!this.state.hideBurger ? (
+              <div id="nav-icon3" onClick={this.onClickHanlder} className={`${this.state.nav_state ? "open" : null + this.state.colour ? "" : "black-burger"} ${this.state.hideBurger && "hide"}`}>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            ): null}
           </div>
+          
           <nav className="parent-navigation">
             <NavigationSlider navigation={this.state.navigation} nav_state={this.state.nav_state} onClickHanlder={this.onClickHanlder}></NavigationSlider>
             <div onClick={this.onClickHanlder} className={`background-blur${this.state.nav_state ? " open" : ""}`}></div>

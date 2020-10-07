@@ -16,12 +16,18 @@ class AppRouter extends Component {
       show_cookies: true,
       nav_colour: false,
       site_map: [],
-      loaded: false
+      loaded: false,
+      hideBurger: false
     }
   }
 
   updateNavColour = (colour) => {
     this.setState({nav_colour: colour});
+  }
+
+  hideBurger = page => {
+    console.log(page);
+    this.setState({hideBurger: page})
   }
 
   fetchPages() {
@@ -53,7 +59,7 @@ class AppRouter extends Component {
         {this.state.site_map.map(page => {
           const {id, title, url, navColour, meta_description, landingPage} = page.page;
           return (
-            <Route exact path={url} render={props => <ComponentLoader page={landingPage} title={title} desc={meta_description} id={id} nav_colour={navColour} navColour={this.updateNavColour}></ComponentLoader>}></Route>
+            <Route exact path={url} render={props => <ComponentLoader page={landingPage} title={title} desc={meta_description} id={id} nav_colour={navColour} navColour={this.updateNavColour} hideBurger={this.hideBurger}></ComponentLoader>}></Route>
           )
         })}
         <Route component={e404}></Route>
@@ -67,7 +73,7 @@ class AppRouter extends Component {
       <Fragment>
       {this.state.loaded && (
         <div className="page-load">
-          <Nav colour={this.state.nav_colour} pathname={this.props.location.pathname}></Nav>
+          <Nav colour={this.state.nav_colour} hideBurger={this.state.hideBurger} pathname={this.props.location.pathname}></Nav>
           {this.authSwitch()}
           <Footer></Footer>
           {this.state.show_cookies ? (
