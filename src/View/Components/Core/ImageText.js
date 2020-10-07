@@ -54,7 +54,7 @@ class ImageText extends Component {
               <p className="paragraph">{paragraph}</p>
             )}
             {buttonTitle && (
-            <CustomLink to={buttonUrl} className="btn">
+            <CustomLink to={buttonUrl} class="btn">
               {buttonTitle}
             </CustomLink>
             )}
