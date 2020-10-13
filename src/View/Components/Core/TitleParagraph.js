@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
 import CustomLink from './CustomLink';
 
 class TitleParagraph extends Component {
@@ -24,7 +23,7 @@ class TitleParagraph extends Component {
 
     return (
     <div className="titlePara-component">
-     <h2 className="section-title orchide"><span className="line">{title}</span></h2>
+     <h2 className={`section-title${this.state.component.font ? "" : " orchide"}`}><span className="line">{title}</span></h2>
      <p>{paragraph}</p>
       {buttonTitle && (
         <CustomLink className="btn" to={buttonUrl}>{buttonTitle}</CustomLink>

@@ -19,7 +19,8 @@ class CustomHTML extends Component {
     console.log(this.state.component);
     
     return (
-      <section className="page-container">
+      <section className={`page-container${this.state.component.textAlignment ? " center" : ""}`}>
+        <h2 className={`section-title${this.state.component.font ? "" : " orchide"}`}><span className="line">{this.state.component.title}</span></h2>
        {this.state.component.html.content.map(el => documentToReactComponents(el))}  
       </section>
     )

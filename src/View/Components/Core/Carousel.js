@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Slider from "react-slick";
+import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 
 class Carousel extends Component {
   constructor(props) {                      
@@ -7,6 +9,16 @@ class Carousel extends Component {
     this.state = {
       component: props.component
     };
+
+    this.next = this.next.bind(this);
+    this.prev = this.prev.bind(this);
+  }
+
+  next() {
+    this.slider.slickNext();
+  }
+  prev() {
+    this.slider.slickPrev();
   }
 
   componentDidUpdate() {
@@ -14,23 +26,43 @@ class Carousel extends Component {
       this.setState({component: this.props.component});
     }
   }
-
+  
   render() {
+    var settings = {
+      dots: false,
+      arrows: false,
+      infinite: false,
+      speed: 500,
+      slidesToScroll: 1,
+      slidesToShow: this.state.component.slidesPerPage,
+      row: 1,
+      responsive: [
+        {
+          breakpoint: 650,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
     return (
-        <div className="carousel-component">
+        <div className="carousel-component page-container">
           <div>
-            <h2><span>Other Properties</span></h2>
+            <h2><span>{this.state.component.title}</span></h2>
           </div>
-          <div className="box">
-            <div className="image-left">
-              <img alt="" src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-01.jpg/jcr:content/renditions/cq5dam.web.2880.jpeg"></img>
-            </div>
-            <div className="image-middle">
-              <img alt="" src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-02.jpg/_jcr_content/renditions/cq5dam.web.1920.jpeg"></img>
-            </div>
-            <div className="image-right">
-              <img alt="" src="https://www.rolls-roycemotorcars.com/content/dam/rrmc/marketUK/rollsroycemotorcars_com/3-5-wraith/in-page-assets/wraith-carousel-03.jpg/jcr:content/renditions/cq5dam.web.1242.jpeg"></img>
-            </div>
+          <div className="carousel-container">
+            <div className="arrow-container prev" onClick={this.prev}><ArrowLeft colour="#1c1c1c"></ArrowLeft></div>
+            <Slider className="slick-carosuel-flex" ref={c => (this.slider = c)} {...settings}>
+              {this.state.component.images.map(image => (
+                <div className="item">
+                  <div className="padding">
+                    <img alt="" src={image.fields.file.url}></img>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+            <div className="arrow-container next" onClick={this.next}><ArrowRight colour="#1c1c1c"></ArrowRight></div>
         </div>
       </div>
     )

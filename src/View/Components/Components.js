@@ -13,6 +13,7 @@ Components['teams'] = require('./Core/Teams').default;
 Components['contactForm'] = require('./Core/ContactForm').default;
 Components['gridContainer'] = require('./Core/gridContainer').default;
 Components['pressContainer'] = require('./Core/pressContainer').default;
+Components['staticImage'] = require('./Core/StaticImage.js').default;
 
 // Property Listings
 Components['propertyListings'] = require('./Properties/Listings').default;
@@ -24,5 +25,9 @@ Components['destination'] = require('./Destinations/Destination').default;
 
 // Services
 Components['ourServices'] = require("./Core/Services").default;
+
+// Blog
+Components['blogLandingPage'] = require("./Core/BlogLandingPage").default;
+Components['articleLoader'] = require("./Core/ArticleLoader").default;
 
 export default Components
