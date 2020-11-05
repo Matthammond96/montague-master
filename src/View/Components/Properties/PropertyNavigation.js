@@ -55,7 +55,7 @@ export const PropertyNavigation = props => {
 
             
                 
-          <HashLink to="#contact-us" scroll={el => scrollWithOffset(el)} className="btn property-btn">Request An Brochure</HashLink>
+          <HashLink to="#contact-us" scroll={el => scrollWithOffset(el)} className="btn property-btn">Request A Brochure</HashLink>
         </div>
       </div>
     </div>

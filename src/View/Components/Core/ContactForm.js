@@ -90,7 +90,7 @@ class ContactForm extends Component {
       <section id="contact-us" className={this.state.component ? ( `${this.state.component.greyBackground ? "contact-us page-container greyBG" : "contact-us page-container"}`) : ( `${this.state.viewing ? "contact-us viewing page-container" : "contact-us page-container"}` ) }>
         {this.state.viewing && (
           <div className="titlePara-component">
-            <h2 className="section-title orchide"><span className="line">Schedule A Viewing</span></h2>
+            <h2 className="section-title orchide"><span className="line">Request A Brochure</span></h2>
             <p>Your ideal property represents an expression of your personality. And so Montague Real Estates takes pride in offering a truly personalised service, on hand to guide you through every step.</p>
           </div>
         )}

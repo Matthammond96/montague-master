@@ -76,7 +76,7 @@ class ContactForm extends Component {
     
     return (
       <div className="contact-form-contact page-container">
-        <h2><span>Schedule A Viewing</span></h2>
+        <h2><span>Request A Brochure</span></h2>
         <div className="contact-form-cotainer">
         <div className="contact-info">
           <p>10 Brick Street,<br></br>Mayfair,<br></br>W1J 7DF<br></br>Tel: 020 7118 1162<br></br>katy@montaguerealestate.com</p>
