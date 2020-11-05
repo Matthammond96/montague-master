@@ -6,6 +6,7 @@ import SubProperties from './SubProperties';
 import ProductGallery from '../Core/ProductGallery';
 import VideoComponent from '../Core/VideoComponent';
 import GridContainer from '../Core/gridContainer';
+import Services from '../Core/Services';
 import VR from './VR'
 import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 import "../../Styles/property.sass"
@@ -187,6 +188,7 @@ class Property extends Component {
                       {contentType === "videoBanner" && <VideoComponent component={obj.fields}></VideoComponent>}
                       {contentType === "subProperties" && <SubProperties component={obj.fields}></SubProperties>}
                       {contentType === "gridContainer" && <GridContainer component={obj.fields}></GridContainer>}
+                      {contentType === "ourServices" && <Services component={obj.fields}></Services>}
                       {contentType === "propertyVrTour" && <VR component={obj.fields}></VR>}
                     </div>
                   )
