@@ -5,6 +5,7 @@ import PropertyToggle from './PropertyToggle';
 import SubProperties from './SubProperties';
 import ProductGallery from '../Core/ProductGallery';
 import VideoComponent from '../Core/VideoComponent';
+import GridContainer from '../Core/gridContainer';
 import VR from './VR'
 import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 import "../../Styles/property.sass"
@@ -185,6 +186,7 @@ class Property extends Component {
                       {contentType === "imageGallery" && <ProductGallery component={obj}></ProductGallery>}
                       {contentType === "videoBanner" && <VideoComponent component={obj.fields}></VideoComponent>}
                       {contentType === "subProperties" && <SubProperties component={obj.fields}></SubProperties>}
+                      {contentType === "gridContainer" && <GridContainer component={obj.fields}></GridContainer>}
                       {contentType === "propertyVrTour" && <VR component={obj.fields}></VR>}
                     </div>
                   )
