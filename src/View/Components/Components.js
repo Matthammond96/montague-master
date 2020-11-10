@@ -18,6 +18,13 @@ Components['staticImage'] = require('./Core/StaticImage.js').default;
 // Property Listings
 Components['propertyListings'] = require('./Properties/Listings').default;
 Components['property'] = require('./Properties/Property').default;
+Components['tabbedContent'] = require('./Properties/PropertyToggle').default;
+Components['subProperties'] = require('./Properties/SubProperties').default;
+Components['imageGallery'] = require('./Core/ProductGallery').default;
+Components['videoBanner'] = require('./Core/VideoComponent').default;
+Components['gridContainer'] = require('./Core/gridContainer').default;
+Components['ourServices'] = require('./Core/Services').default;
+Components['propertyVrTour'] = require('./Properties/VR').default;
 
 // Destinations
 Components['destinationListings'] = require('./Destinations/Destination').default;

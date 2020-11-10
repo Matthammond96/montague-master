@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { client } from '../../../ContentfulContext';
 import {PropertyNavigation} from './PropertyNavigation';
-import PropertyToggle from './PropertyToggle';
-import SubProperties from './SubProperties';
-import ProductGallery from '../Core/ProductGallery';
-import VideoComponent from '../Core/VideoComponent';
-import GridContainer from '../Core/gridContainer';
-import Services from '../Core/Services';
-import VR from './VR'
+import Components from '../../Components/Components';
 import {ArrowLeft, ArrowRight} from '../../Styles/icons';
 import "../../Styles/property.sass"
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
@@ -180,18 +174,15 @@ class Property extends Component {
               <div>
                 {this.state.property.components.map(component => {
                   const contentType = component.sys.contentType.sys.id;
-                  let obj = this.state.components.items.find(o => o.sys.contentType.sys.id === contentType);
-                  return (
-                    <div className="">
-                      {contentType === "tabbedContent" && <PropertyToggle component={obj}></PropertyToggle>}
-                      {contentType === "imageGallery" && <ProductGallery component={obj}></ProductGallery>}
-                      {contentType === "videoBanner" && <VideoComponent component={obj.fields}></VideoComponent>}
-                      {contentType === "subProperties" && <SubProperties component={obj.fields}></SubProperties>}
-                      {contentType === "gridContainer" && <GridContainer component={obj.fields}></GridContainer>}
-                      {contentType === "ourServices" && <Services component={obj.fields}></Services>}
-                      {contentType === "propertyVrTour" && <VR component={obj.fields}></VR>}
-                    </div>
-                  )
+                  let obj;
+                  if (contentType === "tabbedContent" || contentType === "imageGallery") {
+                    obj = this.state.components.items.find(o => o.sys.contentType.sys.id === contentType);
+                  } else {
+                    obj = this.state.components.items.find(o => o.sys.contentType.sys.id === contentType).fields;
+                  }
+                  
+                  const ComponentToRender = Components[contentType];
+                  return <ComponentToRender component={obj}/>                   
                 })}
               </div>
             )}
