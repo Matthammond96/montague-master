@@ -75,7 +75,9 @@ class AppRouter extends Component {
         <div className="page-load">
           <Nav colour={this.state.nav_colour} hideBurger={this.state.hideBurger} pathname={this.props.location.pathname}></Nav>
           {this.authSwitch()}
-          <Footer></Footer>
+          {!this.state.hideBurger && (
+            <Footer></Footer>
+          )}
           {this.state.show_cookies ? (
             <CookieBanner></CookieBanner>
           ) : null}
