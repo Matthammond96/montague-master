@@ -18,8 +18,16 @@ class FeaturedProperties extends Component {
   }
 
   fetchProperties = async () => {
+    let id = "";
+    
+    const promise = await this.state.component.properties.map((property, key) => {
+      if (key === 0) return id = id + property.sys.id
+      return id = id + `,${property.sys.id}`
+    });
+    await Promise.all(promise);
+
     client
-      .getEntries({"content_type": "properties", "sys.id[in]": "4yra9MUSB2xKx423wpPxTZ,7BD5iHENDYc82e3gqfVwon,7KJfvzvdYhFJuXXhG4iedX", "select": ["fields.name", "fields.propertyHandle", "fields.description", "fields.photos", "fields.bedrooms", "fields.bathroom", "fields.propertySizeSqm", "fields.propertyBedroomsMax", "fields.propertyBathroomMax", "fields.propertySizeSqftMax"]})
+      .getEntries({"content_type": "properties", "sys.id[in]": id, "select": ["fields.name", "fields.propertyHandle", "fields.description", "fields.photos", "fields.bedrooms", "fields.bathroom", "fields.propertySizeSqm", "fields.propertyBedroomsMax", "fields.propertyBathroomMax", "fields.propertySizeSqftMax"]})
       .then(async entry => this.setState({fetched_properties: entry.items}))
       .catch(err => console.log(err));
   }
